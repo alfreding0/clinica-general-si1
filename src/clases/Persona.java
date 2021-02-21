@@ -9,11 +9,10 @@ public class Persona {
     private String genero;
     private String direccion;
     private String ocupacion;
-    private String fecha_reg;
     
     public Persona(){ }
 
-    public Persona(String ci, String nombre, String celular, String email, String fecha_nac, String genero, String direccion, String ocupacion, String fecha_reg) {
+    public Persona(String ci, String nombre, String celular, String email, String fecha_nac, String genero, String direccion, String ocupacion) {
         this.ci = ci;
         this.nombre = nombre;
         this.celular = celular;
@@ -22,7 +21,6 @@ public class Persona {
         this.genero = genero;
         this.direccion = direccion;
         this.ocupacion = ocupacion;
-        this.fecha_reg = fecha_reg;
     }
 
     public String getCi() {
@@ -56,11 +54,5 @@ public class Persona {
     public String getOcupacion() {
         return ocupacion;
     }
-
-    public String getFecha_reg() {
-        return fecha_reg;
-    }
-    
-    
 }
 /** @author alfreding0 */
