@@ -1,5 +1,7 @@
 package clases;
 
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import sql.Conexion;
 
 /** @author alfreding0 */
@@ -25,13 +27,21 @@ public class Medico extends Persona{
     }
     
     public void insertarMedico(){
-        String str = "hola " + this.experiencia + " asdfasd" + "fasdf";
+        String ci = super.getCi();
+        String nombre = super.getNombre();
+        String celular = super.getCelular();
+        String email = super.getEmail();
+        String fecha_nac = super.getFecha_nac();
+        String genero = super.getGenero();
+        String direccion = super.getDireccion();
+        String ocupacion = super.getOcupacion();
+        String experiencia1 = this.getExperiencia();
+        String trabajos_ant1 = this.getTrabajos_ant();
         
-        String comando = "insert into persona (ci, nombre, celular, email, fecha_nac, genero, direccion, ocupacion)\n" +
-                            " values ('"+ super.getCi() +"', '" + super.getNombre() + "', '" + super.getCelular() + "',	'" + super.getEmail() + "', '" + super.getFecha_nac() + "', '" + super.getGenero() + "', '"+ super.getDireccion() +"', '" + super.getDireccion() + "');\n" +
-                            " insert into medico (ci, experiencia, trabajos_ant) values ('" + super.getCi() + "', '"+ this.experiencia +"', '" + this.trabajos_ant + "');";
-        
-        con.ejecutarComando(comando);
+        String persona = "INSERT INTO persona (ci, nombre, celular, email, fecha_nac, genero, direccion, ocupacion) VALUES ('"+ci+"', '"+nombre+"', '"+celular+ "', '"+email+"', '"+fecha_nac+"', '"+genero+"', '"+direccion+"', '"+ocupacion+"');";
+        String medico = "INSERT INTO medico (ci, experiencia, trabajos_ant) VALUES ('"+ci+"', '"+experiencia1+"', '"+trabajos_ant1+"');\n";
+
+        con.ejecutarComando( persona + medico );
     }
 }
 

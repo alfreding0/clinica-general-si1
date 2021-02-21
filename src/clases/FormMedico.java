@@ -1,7 +1,4 @@
 package clases;
-
-import sql.Conexion;
-
 /** @author alfreding0 */
 
 
@@ -9,6 +6,7 @@ public class FormMedico extends javax.swing.JFrame {
 
     public FormMedico() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     
@@ -35,10 +33,11 @@ public class FormMedico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -54,52 +53,91 @@ public class FormMedico extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jTextFieldexperiencia = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jTextFielddireccion = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("CI:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 140, 30));
-
-        jLabel2.setText("NOMBRE COMPLETO:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, 28));
-
-        jLabel3.setText("TRABAJOS ANTERIORES:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 127, 28));
+        jPanel1.setBackground(new java.awt.Color(95, 23, 23));
+        jPanel1.setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("GESTIONAR MÉDICOS");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 460, 28));
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(10, 20, 460, 28);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("CI:");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(20, 70, 150, 30);
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("NOMBRE COMPLETO:");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(20, 100, 150, 28);
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("TRABAJOS ANTERIORES:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(20, 340, 150, 28);
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("CELULAR:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 127, 28));
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(20, 130, 150, 28);
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("EMAIL:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 127, 28));
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(20, 160, 150, 28);
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("GENERO:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 127, 28));
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(20, 220, 150, 28);
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("FECHA NACIMIENTO:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 127, 28));
-        getContentPane().add(jTextFielocupacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 170, 30));
-        getContentPane().add(jTextFieldCI, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 170, 30));
-        getContentPane().add(jTextFieldNombreCompleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 170, 30));
-        getContentPane().add(jTextFieldcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 170, 30));
-        getContentPane().add(jTextFieldtrabajosante, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 170, 30));
-        getContentPane().add(jTextFieldFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 170, 30));
-        getContentPane().add(jTextFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 170, 30));
-        getContentPane().add(jTextFieldgenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 170, 30));
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(20, 190, 150, 28);
+        jPanel1.add(jTextFielocupacion);
+        jTextFielocupacion.setBounds(180, 250, 170, 30);
+        jPanel1.add(jTextFieldCI);
+        jTextFieldCI.setBounds(180, 70, 170, 30);
+        jPanel1.add(jTextFieldNombreCompleto);
+        jTextFieldNombreCompleto.setBounds(180, 100, 170, 30);
+        jPanel1.add(jTextFieldcelular);
+        jTextFieldcelular.setBounds(180, 130, 170, 30);
+        jPanel1.add(jTextFieldtrabajosante);
+        jTextFieldtrabajosante.setBounds(180, 340, 170, 30);
+        jPanel1.add(jTextFieldFechaNac);
+        jTextFieldFechaNac.setBounds(180, 190, 170, 30);
+        jPanel1.add(jTextFieldEmail);
+        jTextFieldEmail.setBounds(180, 160, 170, 30);
+        jPanel1.add(jTextFieldgenero);
+        jTextFieldgenero.setBounds(180, 220, 170, 30);
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("OCUPACION:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 127, 28));
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(20, 250, 150, 28);
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("EXPERIENCIA:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 127, 28));
-        getContentPane().add(jTextFieldexperiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 170, 30));
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(20, 310, 150, 28);
+        jPanel1.add(jTextFieldexperiencia);
+        jTextFieldexperiencia.setBounds(180, 310, 170, 30);
+        jPanel1.add(jTextFielddireccion);
+        jTextFielddireccion.setBounds(180, 280, 170, 30);
+
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("DIRECCION:");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(20, 280, 150, 28);
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -107,11 +145,10 @@ public class FormMedico extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
-        getContentPane().add(jTextFielddireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 170, 30));
+        jPanel1.add(jButton1);
+        jButton1.setBounds(370, 70, 100, 30);
 
-        jLabel11.setText("DIRECCION:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 127, 28));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -165,6 +202,7 @@ public class FormMedico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldCI;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldFechaNac;
