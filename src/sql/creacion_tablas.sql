@@ -8,7 +8,7 @@ create table persona(
     genero varchar(1) not null,
     direccion varchar(100) not null,
     ocupacion varchar(150) not null,
-    fecha_reg date default now()
+    fecha_reg timestamp default now()
 );
 
 create table medico(

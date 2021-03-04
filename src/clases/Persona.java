@@ -54,5 +54,40 @@ public class Persona {
     public String getOcupacion() {
         return ocupacion;
     }
+
+    public void setCi(String ci) {
+        this.ci = ci;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFecha_nac(String fecha_nac) {
+        this.fecha_nac = fecha_nac;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setOcupacion(String ocupacion) {
+        this.ocupacion = ocupacion;
+    }
+    
+    
+    
 }
 /** @author alfreding0 */

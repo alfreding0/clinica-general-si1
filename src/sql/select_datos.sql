@@ -1,5 +1,5 @@
 --MEDICOS
-SELECT p.*, m.experiencia, m.trabajos_ant FROM  persona p, medico m WHERE p.ci=m.ci;
+SELECT p.*, m.experiencia, m.trabajos_ant FROM  persona p, medico m WHERE p.ci=m.ci AND p.ci='';
 
 --PACIENTES
 SELECT p.* FROM  persona p, paciente pac WHERE p.ci=pac.ci;
