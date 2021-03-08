@@ -13,8 +13,8 @@ public final class ConexionExample{
     private final String HOST       =   "localhost";
     private final String PORT       =   "5432";
     private final String MOTOR      =   "postgresql";
-    private final String USER       =   "tuusuario";
-    private final String PASS       =   "tucontraseña";
+    private final String USER       =   "tuusariopostgres";
+    private final String PASS       =   "tucontraseñapostgres";
     
     
     
@@ -69,13 +69,16 @@ public final class ConexionExample{
      * <br>
      * Todas estas instrucciones deben enviarse como una cadena String. <br>
      * @param comando
+     * @return 
      */
-    public void ejecutarComando(String comando) {
+    public boolean ejecutarComando(String comando) {
         try {
             Statement Cmd = cnx.createStatement();
             Cmd.execute(comando);
+            return true;
         }catch (SQLException err) {
             System.out.println("Error al intentar ejecutar comando: " + err);
+            return false;
         }
     }
     
