@@ -3,12 +3,14 @@ package clases;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sql.Conexion;
+import utils.ModeloMostrarDatos;
 
 /** @author alfreding0 */
 public class Medico extends Persona{
@@ -75,28 +77,13 @@ public class Medico extends Persona{
     
     public void mostrarDatosEnTabla(JTable mitabla, String ci){
         try {
-            String [] tittle = {"CI", "NOMBRE COMPLETO", "CELULAR", "EMAIL", "DIRECCION"};
-            DefaultTableModel model = new DefaultTableModel(null, tittle);
-            
             String consulta = "SELECT p.ci, p.nombre, p.celular, p.email, p.direccion FROM  persona p, medico m WHERE p.ci=m.ci AND p.ci ILIKE '%"+ci+"%' ORDER BY p.fecha_reg DESC LIMIT 6;";
-            ResultSet rs=con.ejecutarConsulta(consulta); 
-            ResultSetMetaData datos=rs.getMetaData();  
-            int num_columnas=datos.getColumnCount();
-            while(rs.next()){
-                Object datosPorFila []=new Object[num_columnas]; 
-                for(int i=0; i<num_columnas; i++){
-                    try{
-                        int columnIndex=i+1;
-                        datosPorFila[i]=rs.getObject(columnIndex);
-                    }catch(SQLException e){
-                        JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
-                    }
-                }
-                model.addRow(datosPorFila);
-            }
-            mitabla.setModel(model);
+            String[] tituloEncabezado = {"CI", "NOMBRE COMPLETO", "CELULAR", "EMAIL", "DIRECCION"};
+            
+            ModeloMostrarDatos modelo = new ModeloMostrarDatos();
+            modelo.mostrar(tituloEncabezado, mitabla, con, consulta);
         } catch (SQLException ex) {
-            Logger.getLogger(Medico.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al mostrar datos en la tabla!\n" + ex.getMessage(), "Tarea fallida!", JOptionPane.WARNING_MESSAGE);
         }
     }
     
