@@ -211,7 +211,8 @@ public class FormMedico extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaTrabajosAnt = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(47, 50, 47));
@@ -474,6 +475,9 @@ public class FormMedico extends javax.swing.JFrame {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTable1MouseReleased(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTable1MouseExited(evt);
+            }
         });
         jScrollPane1.setViewportView(jTable1);
 
@@ -516,6 +520,11 @@ public class FormMedico extends javax.swing.JFrame {
         jComboBoxGenero.setBackground(new java.awt.Color(63, 63, 63));
         jComboBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Masculino", "Femenino" }));
         jComboBoxGenero.setToolTipText("");
+        jComboBoxGenero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxGeneroMouseClicked(evt);
+            }
+        });
         jPanel1.add(jComboBoxGenero);
         jComboBoxGenero.setBounds(660, 150, 260, 30);
 
@@ -578,7 +587,8 @@ public class FormMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.exit(0);
+        //System.exit(0); //cerrar todo el programa
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -693,6 +703,14 @@ public class FormMedico extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextAreaTrabajosAntKeyTyped
+
+    private void jComboBoxGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxGeneroMouseClicked
+        JOptionPane.showMessageDialog(null, "clic en combo");
+    }//GEN-LAST:event_jComboBoxGeneroMouseClicked
+
+    private void jTable1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseExited
+        JOptionPane.showMessageDialog(null, "saliendo de tabla");
+    }//GEN-LAST:event_jTable1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

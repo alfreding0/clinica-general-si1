@@ -59,7 +59,7 @@ public class Medico extends Persona{
         ResultSet rs = con.ejecutarConsulta("SELECT ci FROM persona WHERE ci='" + ci + "';");
         try {
             String persona, medico;
-            if(rs.next()){
+            if(rs.next()){  //boolean
                 persona = "UPDATE persona SET nombre='"+nombre+"', celular='"+celular+"', email='"+email+"', fecha_nac='"+fecha_nac+"', genero='"+genero+"', direccion='"+direccion+"', ocupacion='"+ocupacion+"' WHERE ci = '"+ci+"';";
                 medico = "UPDATE medico SET experiencia='"+experiencia1+"', trabajos_ant='"+trabajos_ant1+"' WHERE ci = '"+ci+"';";
                 
@@ -67,7 +67,7 @@ public class Medico extends Persona{
                 persona = "INSERT INTO persona (ci, nombre, celular, email, fecha_nac, genero, direccion, ocupacion) VALUES ('"+ci+"', '"+nombre+"', '"+celular+ "', '"+email+"', '"+fecha_nac+"', '"+genero+"', '"+direccion+"', '"+ocupacion+"');";
                 medico = "INSERT INTO medico (ci, experiencia, trabajos_ant) VALUES ('"+ci+"', '"+experiencia1+"', '"+trabajos_ant1+"');\n";
             }
-            return con.ejecutarComando( persona + medico );
+            return con.ejecutarComando(persona + medico );
                 
         } catch (SQLException ex) {
             return false;
