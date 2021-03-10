@@ -2,9 +2,6 @@ package main;
 
 
 import clases.Principal;
-import clases.FormMedico;
-import clases.Principal2;
-import clases.ProbandoInterfazPrincipal;
 import java.sql.SQLException;
 
 /** @author alfreding0 */
@@ -21,10 +18,7 @@ public class Main {
             System.out.println(ex.getMessage());
         }
         
-//        Principal2 p = new Principal2();
-//        p.setVisible(true);
-        
-        ProbandoInterfazPrincipal p = new ProbandoInterfazPrincipal();
+        Principal p = new Principal();
         p.setVisible(true);
     }
 }
