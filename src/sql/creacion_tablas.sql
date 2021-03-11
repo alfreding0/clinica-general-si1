@@ -1,4 +1,4 @@
-/* create database clinica-general*/
+/* create database db_clinica_general*/
 create table persona(
 	ci varchar(12) primary key,
     nombre varchar(50) not null,

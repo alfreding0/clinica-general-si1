@@ -15,13 +15,16 @@ import utils.PlaceHolder;
  */
 public class FormPaciente extends javax.swing.JFrame {
     private PlaceHolder placeholder;
+    private final Class formConsulta;
+    
     public FormPaciente(Component component) {
         initComponents();
-        
+        this.formConsulta = component.getClass();
         this.setLocationRelativeTo(component); //Mostrar esta ventana centrado al formulario principal
         this.mostrarDatos();
         this.repintarHeaderTabla();
-        this.ponerPlaceHolders();       
+        this.ponerPlaceHolders();      
+        this.habilitarBotonEnviarDatos();
     }
     
     private void ponerPlaceHolders(){
@@ -168,6 +171,30 @@ public class FormPaciente extends javax.swing.JFrame {
         }
         return arroba==1 && punto>0;
     }
+    
+    private void enviarDatosPaciente(){
+        if(!jTextFieldCI.getText().isEmpty()){
+            if(formConsulta == FormConsulta.class){ //verifica si la instancia formConsulta es del mismo tipo que FormConsulta, para saber que se abrió esta ventana desde allí.
+                FormConsulta.jTextFieldIdPaciente.setText(jTextFieldCI.getText());
+                FormConsulta.jTextFieldNombrePaciente.setText(jTextFieldNombreCompleto.getText());
+                this.dispose();
+            }
+        }else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un Paciente!!!");
+    }
+    
+    /**
+     * Si este formulario se abre desde FormConsulta para registrar un nuevo paciente,
+     * entonces se habilitará el botón enviar datos, de lo contrario significa que
+     * ha sido abierto desde el FormPrincipal por lo que no se necesita enviar datos
+     * a ningun formulario.
+     */
+    private void habilitarBotonEnviarDatos(){
+        if(formConsulta == FormConsulta.class)
+            jButtonEnviarDatos.setVisible(true);
+        else
+            jButtonEnviarDatos.setVisible(false);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -203,6 +230,7 @@ public class FormPaciente extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButton7 = new javax.swing.JButton();
+        jButtonEnviarDatos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -514,11 +542,6 @@ public class FormPaciente extends javax.swing.JFrame {
         jComboBoxGenero.setBackground(new java.awt.Color(63, 63, 63));
         jComboBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Masculino", "Femenino" }));
         jComboBoxGenero.setToolTipText("");
-        jComboBoxGenero.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBoxGeneroMouseClicked(evt);
-            }
-        });
         jPanel1.add(jComboBoxGenero);
         jComboBoxGenero.setBounds(660, 170, 260, 30);
 
@@ -556,6 +579,24 @@ public class FormPaciente extends javax.swing.JFrame {
         });
         jPanel1.add(jButton7);
         jButton7.setBounds(730, 320, 220, 30);
+
+        jButtonEnviarDatos.setBackground(new java.awt.Color(255, 102, 102));
+        jButtonEnviarDatos.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jButtonEnviarDatos.setForeground(new java.awt.Color(21, 150, 203));
+        jButtonEnviarDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/enviar-25.png"))); // NOI18N
+        jButtonEnviarDatos.setText("Enviar datos");
+        jButtonEnviarDatos.setBorderPainted(false);
+        jButtonEnviarDatos.setContentAreaFilled(false);
+        jButtonEnviarDatos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonEnviarDatos.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButtonEnviarDatos.setIconTextGap(2);
+        jButtonEnviarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEnviarDatosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonEnviarDatos);
+        jButtonEnviarDatos.setBounds(780, 290, 160, 30);
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 630));
 
@@ -660,10 +701,6 @@ public class FormPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFielocupacionKeyTyped
 
-    private void jComboBoxGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxGeneroMouseClicked
-        JOptionPane.showMessageDialog(null, "clic en combo");
-    }//GEN-LAST:event_jComboBoxGeneroMouseClicked
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         String ci = jTextFieldCI.getText();
         if( ! ci.isEmpty() ){
@@ -675,6 +712,10 @@ public class FormPaciente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione un paciente!!!", "Advertencia", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButtonEnviarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarDatosActionPerformed
+        this.enviarDatosPaciente();
+    }//GEN-LAST:event_jButtonEnviarDatosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -685,6 +726,7 @@ public class FormPaciente extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonBuscarPorCI;
+    private javax.swing.JButton jButtonEnviarDatos;
     private javax.swing.JComboBox<String> jComboBoxGenero;
     private com.toedter.calendar.JDateChooser jDateChooserFechaNac;
     private javax.swing.JLabel jLabel1;

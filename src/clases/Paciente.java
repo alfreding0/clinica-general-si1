@@ -5,6 +5,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import sql.Conexion;
 import utils.ModeloMostrarDatos;
 
@@ -95,6 +96,19 @@ public class Paciente extends Persona{
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void buscarPacientePorCI(JTextField jtextfield, String ci){
+        try {
+            String consulta = "SELECT nombre FROM persona WHERE ci='"+ci+"';";
+            ResultSet rs = con.ejecutarConsulta(consulta);
+            if( rs.next() )
+                jtextfield.setText(rs.getString("nombre"));
+            else
+                JOptionPane.showMessageDialog(null, "No existe el paciente con CI: " + ci);
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar paciente!\n" + ex.getMessage());
         }
     }
 }

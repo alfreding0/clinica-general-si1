@@ -231,7 +231,6 @@ public class FormMedico extends javax.swing.JFrame {
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -430,7 +429,6 @@ public class FormMedico extends javax.swing.JFrame {
         jButton4.setBorderPainted(false);
         jButton4.setContentAreaFilled(false);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.setOpaque(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -447,7 +445,6 @@ public class FormMedico extends javax.swing.JFrame {
         jButton5.setBorderPainted(false);
         jButton5.setContentAreaFilled(false);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton5.setOpaque(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -464,7 +461,6 @@ public class FormMedico extends javax.swing.JFrame {
         jButton6.setBorderPainted(false);
         jButton6.setContentAreaFilled(false);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setOpaque(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -541,11 +537,6 @@ public class FormMedico extends javax.swing.JFrame {
         jComboBoxGenero.setBackground(new java.awt.Color(63, 63, 63));
         jComboBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Masculino", "Femenino" }));
         jComboBoxGenero.setToolTipText("");
-        jComboBoxGenero.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBoxGeneroMouseClicked(evt);
-            }
-        });
         jPanel1.add(jComboBoxGenero);
         jComboBoxGenero.setBounds(660, 150, 260, 30);
 
@@ -557,7 +548,6 @@ public class FormMedico extends javax.swing.JFrame {
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setOpaque(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -730,10 +720,6 @@ public class FormMedico extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextAreaTrabajosAntKeyTyped
-
-    private void jComboBoxGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxGeneroMouseClicked
-        JOptionPane.showMessageDialog(null, "clic en combo");
-    }//GEN-LAST:event_jComboBoxGeneroMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
