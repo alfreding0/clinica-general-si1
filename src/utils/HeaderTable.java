@@ -32,7 +32,7 @@ public class HeaderTable  implements TableCellRenderer {
         //jcomponent.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(221, 211, 211)));
         jcomponent.setBorder(javax.swing.BorderFactory.createEmptyBorder()); //sin bordes en el encabezado
         jcomponent.setOpaque(true);
-        jcomponent.setBackground( new Color(0,153,0) );
+        jcomponent.setBackground( new Color(21,150,203) );
 //        jcomponent.setBackground( new Color(51,51,51) );
 //        jcomponent.setToolTipText("Tabla Seguimiento");
         jcomponent.setForeground(new Color(51,51,51));

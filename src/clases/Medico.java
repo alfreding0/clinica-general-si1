@@ -3,12 +3,10 @@ package clases;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import sql.Conexion;
 import utils.ModeloMostrarDatos;
 
@@ -77,7 +75,7 @@ public class Medico extends Persona{
     
     public void mostrarDatosEnTabla(JTable mitabla, String ci){
         try {
-            String consulta = "SELECT p.ci, p.nombre, p.celular, p.email, p.direccion FROM  persona p, medico m WHERE p.ci=m.ci AND p.ci ILIKE '%"+ci+"%' ORDER BY p.fecha_reg DESC LIMIT 6;";
+            String consulta = "SELECT p.ci, p.nombre, p.celular, p.email, p.direccion FROM  persona p, medico m WHERE p.ci=m.ci AND p.ci ILIKE '%"+ci+"%' ORDER BY p.fecha_reg DESC LIMIT 8;";
             String[] tituloEncabezado = {"CI", "NOMBRE COMPLETO", "CELULAR", "EMAIL", "DIRECCION"};
             
             ModeloMostrarDatos modelo = new ModeloMostrarDatos();

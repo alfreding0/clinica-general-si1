@@ -17,7 +17,7 @@ public class FormMedico extends javax.swing.JFrame {
     public FormMedico() {
         initComponents();
         
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(FormMedico.this); //Mostrar venta centrado al medio de la pantalla
         this.mostrarDatos();
         this.repintarHeaderTabla();
         this.ponerPlaceHolders();       
@@ -100,6 +100,7 @@ public class FormMedico extends javax.swing.JFrame {
     private void buscarPorCI(){
         Medico med = new Medico();
         med.mostrarDatosEnTabla(jTable1, jTextFielBuscarPorCI.getText());
+        this.fijarAnchoColumnasTabla();
     }
     
     private void limpiarTodo(){
@@ -111,7 +112,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFieldCI.setText("");
         jTextFieldNombreCompleto.setText("");
         jTextFieldcelular.setText("");
-        jTextFieldEmail.setText("");
+        jTextFieldEmail.setText("@gmail.com");
         jTextFielocupacion.setText("");
         jTextFielddireccion.setText("");
         jTextAreaExperiencia.setText("");
@@ -119,6 +120,7 @@ public class FormMedico extends javax.swing.JFrame {
         jDateChooserFechaNac.setDate(new Date());
         jComboBoxGenero.setSelectedIndex(0);
         jTextFieldCI.setEditable(true);
+        jTextFielBuscarPorCI.setText("");
     }
     
     private void limpiarTabla(){
@@ -206,6 +208,7 @@ public class FormMedico extends javax.swing.JFrame {
         jButtonBuscarPorCI = new javax.swing.JButton();
         jComboBoxGenero = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaExperiencia = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -216,66 +219,70 @@ public class FormMedico extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(47, 50, 47));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(21, 122, 163)));
         jPanel1.setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 51));
+        jButton1.setBackground(new java.awt.Color(21, 150, 203));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
+        jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/guardar-20.png"))); // NOI18N
         jButton1.setText("Guardar");
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(170, 320, 110, 30);
+        jButton1.setBounds(130, 320, 120, 30);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel1.setForeground(new java.awt.Color(21, 150, 203));
         jLabel1.setText("CI:");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(60, 90, 160, 30);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel2.setForeground(new java.awt.Color(21, 150, 203));
         jLabel2.setText("NOMBRE COMPLETO:");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(500, 90, 160, 28);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel3.setText("TRABAJOS ANTERIORES:");
+        jLabel3.setForeground(new java.awt.Color(21, 150, 203));
+        jLabel3.setText("TRABAJO ANTERIOR:");
         jPanel1.add(jLabel3);
         jLabel3.setBounds(500, 210, 160, 28);
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel5.setForeground(new java.awt.Color(21, 150, 203));
         jLabel5.setText("CELULAR:");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(60, 120, 160, 28);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel6.setForeground(new java.awt.Color(21, 150, 203));
         jLabel6.setText("EMAIL:");
         jPanel1.add(jLabel6);
         jLabel6.setBounds(500, 120, 160, 28);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel7.setForeground(new java.awt.Color(21, 150, 203));
         jLabel7.setText("GENERO:");
         jPanel1.add(jLabel7);
         jLabel7.setBounds(500, 150, 160, 28);
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel8.setForeground(new java.awt.Color(21, 150, 203));
         jLabel8.setText("FECHA NACIMIENTO:");
         jPanel1.add(jLabel8);
         jLabel8.setBounds(60, 150, 160, 28);
 
         jTextFielocupacion.setBackground(new java.awt.Color(63, 63, 63));
-        jTextFielocupacion.setForeground(new java.awt.Color(0, 204, 0));
+        jTextFielocupacion.setForeground(new java.awt.Color(21, 150, 203));
         jTextFielocupacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFielocupacion.setBorder(null);
         jTextFielocupacion.setName(""); // NOI18N
@@ -294,9 +301,9 @@ public class FormMedico extends javax.swing.JFrame {
 
         jTextFieldCI.setBackground(new java.awt.Color(63, 63, 63));
         jTextFieldCI.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jTextFieldCI.setForeground(new java.awt.Color(0, 204, 0));
+        jTextFieldCI.setForeground(new java.awt.Color(21, 150, 203));
         jTextFieldCI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldCI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 0)));
+        jTextFieldCI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(21, 150, 203)));
         jTextFieldCI.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldCI.setName(""); // NOI18N
         jTextFieldCI.setSelectedTextColor(new java.awt.Color(51, 51, 51));
@@ -310,7 +317,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFieldCI.setBounds(220, 90, 260, 30);
 
         jTextFieldNombreCompleto.setBackground(new java.awt.Color(63, 63, 63));
-        jTextFieldNombreCompleto.setForeground(new java.awt.Color(0, 204, 0));
+        jTextFieldNombreCompleto.setForeground(new java.awt.Color(21, 150, 203));
         jTextFieldNombreCompleto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldNombreCompleto.setBorder(null);
         jTextFieldNombreCompleto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -329,7 +336,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFieldNombreCompleto.setBounds(660, 90, 260, 30);
 
         jTextFieldcelular.setBackground(new java.awt.Color(63, 63, 63));
-        jTextFieldcelular.setForeground(new java.awt.Color(0, 204, 0));
+        jTextFieldcelular.setForeground(new java.awt.Color(21, 150, 203));
         jTextFieldcelular.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldcelular.setBorder(null);
         jTextFieldcelular.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -345,7 +352,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFieldcelular.setBounds(220, 120, 260, 30);
 
         jTextFieldEmail.setBackground(new java.awt.Color(63, 63, 63));
-        jTextFieldEmail.setForeground(new java.awt.Color(0, 204, 0));
+        jTextFieldEmail.setForeground(new java.awt.Color(21, 150, 203));
         jTextFieldEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldEmail.setText("@gmail.com");
         jTextFieldEmail.setBorder(null);
@@ -357,19 +364,19 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFieldEmail.setBounds(660, 120, 260, 30);
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel9.setForeground(new java.awt.Color(21, 150, 203));
         jLabel9.setText("OCUPACION:");
         jPanel1.add(jLabel9);
         jLabel9.setBounds(60, 180, 160, 28);
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel10.setForeground(new java.awt.Color(21, 150, 203));
         jLabel10.setText("EXPERIENCIA:");
         jPanel1.add(jLabel10);
         jLabel10.setBounds(60, 210, 160, 28);
 
         jTextFielddireccion.setBackground(new java.awt.Color(63, 63, 63));
-        jTextFielddireccion.setForeground(new java.awt.Color(0, 204, 0));
+        jTextFielddireccion.setForeground(new java.awt.Color(21, 150, 203));
         jTextFielddireccion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFielddireccion.setBorder(null);
         jTextFielddireccion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -388,13 +395,13 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFielddireccion.setBounds(660, 180, 260, 30);
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel11.setForeground(new java.awt.Color(21, 150, 203));
         jLabel11.setText("DIRECCION:");
         jPanel1.add(jLabel11);
         jLabel11.setBounds(500, 180, 160, 28);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 153, 51));
+        jLabel4.setForeground(new java.awt.Color(21, 150, 203));
         jLabel4.setText("MÉDICOS");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(50, 30, 360, 30);
@@ -402,54 +409,68 @@ public class FormMedico extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 102, 102));
         jButton2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Salir");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/salir-20.png"))); // NOI18N
+        jButton2.setText("Cerrar");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(810, 580, 110, 30);
+        jButton2.setBounds(800, 580, 120, 30);
 
         jButton4.setBackground(new java.awt.Color(255, 102, 102));
         jButton4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(51, 51, 51));
+        jButton4.setForeground(new java.awt.Color(255, 102, 102));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/eliminar-20.png"))); // NOI18N
         jButton4.setText("Eliminar");
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setOpaque(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(500, 320, 110, 30);
+        jButton4.setBounds(430, 320, 120, 30);
 
-        jButton5.setBackground(new java.awt.Color(0, 153, 51));
+        jButton5.setBackground(new java.awt.Color(21, 150, 203));
         jButton5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(51, 51, 51));
+        jButton5.setForeground(new java.awt.Color(204, 204, 204));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/mostrar-20.png"))); // NOI18N
         jButton5.setText("Mostrar");
+        jButton5.setBorderPainted(false);
+        jButton5.setContentAreaFilled(false);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.setOpaque(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(280, 320, 110, 30);
+        jButton5.setBounds(240, 320, 114, 30);
 
-        jButton6.setBackground(new java.awt.Color(0, 153, 51));
+        jButton6.setBackground(new java.awt.Color(21, 150, 203));
         jButton6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(51, 51, 51));
+        jButton6.setForeground(new java.awt.Color(204, 204, 204));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/limpiar-20.png"))); // NOI18N
         jButton6.setText("Limpiar");
+        jButton6.setBorderPainted(false);
+        jButton6.setContentAreaFilled(false);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.setOpaque(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(390, 320, 110, 30);
+        jButton6.setBounds(340, 320, 110, 30);
 
         jScrollPane1.setBackground(new java.awt.Color(63, 63, 63));
         jScrollPane1.setForeground(new java.awt.Color(63, 63, 63));
@@ -457,7 +478,7 @@ public class FormMedico extends javax.swing.JFrame {
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jTable1.setBackground(new java.awt.Color(51, 51, 51));
-        jTable1.setForeground(new java.awt.Color(0, 153, 51));
+        jTable1.setForeground(new java.awt.Color(21, 150, 203));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -468,15 +489,12 @@ public class FormMedico extends javax.swing.JFrame {
         ));
         jTable1.setFocusable(false);
         jTable1.setRowHeight(21);
-        jTable1.setSelectionBackground(new java.awt.Color(0, 153, 51));
+        jTable1.setSelectionBackground(new java.awt.Color(21, 150, 203));
         jTable1.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jTable1.setShowVerticalLines(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTable1MouseReleased(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTable1MouseExited(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -489,7 +507,7 @@ public class FormMedico extends javax.swing.JFrame {
         jDateChooserFechaNac.setBounds(220, 150, 260, 30);
 
         jTextFielBuscarPorCI.setBackground(new java.awt.Color(63, 63, 63));
-        jTextFielBuscarPorCI.setForeground(new java.awt.Color(0, 204, 0));
+        jTextFielBuscarPorCI.setForeground(new java.awt.Color(21, 150, 203));
         jTextFielBuscarPorCI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFielBuscarPorCI.setBorder(null);
         jTextFielBuscarPorCI.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -504,10 +522,12 @@ public class FormMedico extends javax.swing.JFrame {
         jPanel1.add(jTextFielBuscarPorCI);
         jTextFielBuscarPorCI.setBounds(60, 360, 170, 30);
 
-        jButtonBuscarPorCI.setBackground(new java.awt.Color(0, 153, 51));
+        jButtonBuscarPorCI.setBackground(new java.awt.Color(21, 150, 203));
         jButtonBuscarPorCI.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButtonBuscarPorCI.setForeground(new java.awt.Color(51, 51, 51));
-        jButtonBuscarPorCI.setText("=O");
+        jButtonBuscarPorCI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/buscarBlue-25.png"))); // NOI18N
+        jButtonBuscarPorCI.setBorderPainted(false);
+        jButtonBuscarPorCI.setContentAreaFilled(false);
         jButtonBuscarPorCI.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonBuscarPorCI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -515,7 +535,7 @@ public class FormMedico extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonBuscarPorCI);
-        jButtonBuscarPorCI.setBounds(230, 360, 60, 30);
+        jButtonBuscarPorCI.setBounds(230, 360, 40, 30);
 
         jComboBoxGenero.setBackground(new java.awt.Color(63, 63, 63));
         jComboBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione:", "Masculino", "Femenino" }));
@@ -528,22 +548,28 @@ public class FormMedico extends javax.swing.JFrame {
         jPanel1.add(jComboBoxGenero);
         jComboBoxGenero.setBounds(660, 150, 260, 30);
 
-        jButton3.setBackground(new java.awt.Color(0, 102, 153));
+        jButton3.setBackground(new java.awt.Color(0, 153, 51));
         jButton3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setForeground(new java.awt.Color(0, 153, 51));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/nuevo-20.png"))); // NOI18N
         jButton3.setText("Nuevo");
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setOpaque(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(60, 320, 110, 30);
+        jButton3.setBounds(40, 320, 102, 30);
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(60, 350, 470, 10);
 
         jTextAreaExperiencia.setBackground(new java.awt.Color(63, 63, 63));
         jTextAreaExperiencia.setColumns(20);
-        jTextAreaExperiencia.setForeground(new java.awt.Color(0, 204, 0));
+        jTextAreaExperiencia.setForeground(new java.awt.Color(21, 150, 203));
         jTextAreaExperiencia.setRows(5);
         jTextAreaExperiencia.setBorder(null);
         jTextAreaExperiencia.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -561,7 +587,7 @@ public class FormMedico extends javax.swing.JFrame {
 
         jTextAreaTrabajosAnt.setBackground(new java.awt.Color(63, 63, 63));
         jTextAreaTrabajosAnt.setColumns(20);
-        jTextAreaTrabajosAnt.setForeground(new java.awt.Color(0, 204, 0));
+        jTextAreaTrabajosAnt.setForeground(new java.awt.Color(21, 150, 203));
         jTextAreaTrabajosAnt.setRows(5);
         jTextAreaTrabajosAnt.setBorder(null);
         jTextAreaTrabajosAnt.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -658,7 +684,7 @@ public class FormMedico extends javax.swing.JFrame {
 
     private void jTextFieldNombreCompletoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreCompletoKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' '){
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' && c!='ñ' && c!='Ñ'){
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldNombreCompletoKeyTyped
@@ -671,35 +697,35 @@ public class FormMedico extends javax.swing.JFrame {
 
     private void jTextFielddireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielddireccionKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' && c!='#' && c!='_' && c!='-' && (c<'0' || c>'9')){
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' && c!='#' && c!='_' && c!='-' && c!='.' && (c<'0' || c>'9') && c!='ñ' && c!='Ñ'){
             evt.consume();
         }
     }//GEN-LAST:event_jTextFielddireccionKeyTyped
 
     private void jTextFieldCIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCIKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z')){
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && (c<'0' || c>'9')){
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldCIKeyTyped
 
     private void jTextFielocupacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielocupacionKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' && c!='#' && c!='_' && c!='-' && (c<'0' || c>'9')){
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' && c!='#' && c!='_' && c!='-' && (c<'0' || c>'9')  && c!='ñ' && c!='Ñ'){
             evt.consume();
         }
     }//GEN-LAST:event_jTextFielocupacionKeyTyped
 
     private void jTextAreaExperienciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaExperienciaKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' && c!='-' && (c<'0' || c>'9')){
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' && c!='-' && (c<'0' || c>'9') && c!='ñ' && c!='Ñ'){
             evt.consume();
         }
     }//GEN-LAST:event_jTextAreaExperienciaKeyTyped
 
     private void jTextAreaTrabajosAntKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaTrabajosAntKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z')){
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!=' '){
             evt.consume();
         }
     }//GEN-LAST:event_jTextAreaTrabajosAntKeyTyped
@@ -707,10 +733,6 @@ public class FormMedico extends javax.swing.JFrame {
     private void jComboBoxGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxGeneroMouseClicked
         JOptionPane.showMessageDialog(null, "clic en combo");
     }//GEN-LAST:event_jComboBoxGeneroMouseClicked
-
-    private void jTable1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseExited
-        JOptionPane.showMessageDialog(null, "saliendo de tabla");
-    }//GEN-LAST:event_jTable1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -738,6 +760,7 @@ public class FormMedico extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextAreaExperiencia;
     private javax.swing.JTextArea jTextAreaTrabajosAnt;
