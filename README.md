@@ -1,5 +1,5 @@
-# conexion-java-postgresql
-### Implementada la Conexión de Java a PostgresSQL, para manipulación de datos de una base de datos.
+# Sistema Clinica General
+### Implementada en java 8 con netbeans 8.2.
 
 ### Importante!
 Después de clonar este repositorio, al abrir el proyecto en Netbeans8.2 va a mostrar signos de error, 
