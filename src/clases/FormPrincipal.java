@@ -2,11 +2,11 @@ package clases;
 /** @author alfreding0 */
 
 
-public class Principal extends javax.swing.JFrame {
+public class FormPrincipal extends javax.swing.JFrame {
 
-    public Principal() {
+    public FormPrincipal() {
         initComponents();
-        this.setLocationRelativeTo(Principal.this); //ventana centrado
+        this.setLocationRelativeTo(FormPrincipal.this); //ventana centrado
 //        this.setOpacity(0.5f);
 
     }
@@ -143,7 +143,8 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        FormPaciente pac = new FormPaciente();
+        pac.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

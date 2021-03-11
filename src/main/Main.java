@@ -1,7 +1,7 @@
 package main;
 
 
-import clases.Principal;
+import clases.FormPrincipal;
 import java.sql.SQLException;
 
 /** @author alfreding0 */
@@ -18,7 +18,7 @@ public class Main {
             System.out.println(ex.getMessage());
         }
         
-        Principal p = new Principal();
+        FormPrincipal p = new FormPrincipal();
         p.setVisible(true);
     }
 }
