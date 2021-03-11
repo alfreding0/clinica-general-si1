@@ -1,6 +1,7 @@
 package clases;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -14,10 +15,10 @@ import utils.PlaceHolder;
  */
 public class FormMedico extends javax.swing.JFrame {
     private PlaceHolder placeholder;
-    public FormMedico() {
+    public FormMedico(Component component) {
         initComponents();
         
-        this.setLocationRelativeTo(FormMedico.this); //Mostrar venta centrado al medio de la pantalla
+        this.setLocationRelativeTo(component); //Mostrar venta centrado al centro del formulario principal
         this.mostrarDatos();
         this.repintarHeaderTabla();
         this.ponerPlaceHolders();       

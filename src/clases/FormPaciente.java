@@ -1,6 +1,7 @@
 package clases;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -14,10 +15,10 @@ import utils.PlaceHolder;
  */
 public class FormPaciente extends javax.swing.JFrame {
     private PlaceHolder placeholder;
-    public FormPaciente() {
+    public FormPaciente(Component component) {
         initComponents();
         
-        this.setLocationRelativeTo(FormPaciente.this); //Mostrar venta centrado al medio de la pantalla
+        this.setLocationRelativeTo(component); //Mostrar esta ventana centrado al formulario principal
         this.mostrarDatos();
         this.repintarHeaderTabla();
         this.ponerPlaceHolders();       
@@ -201,6 +202,7 @@ public class FormPaciente extends javax.swing.JFrame {
         jComboBoxGenero = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -538,6 +540,23 @@ public class FormPaciente extends javax.swing.JFrame {
         jPanel1.add(jSeparator1);
         jSeparator1.setBounds(60, 350, 470, 10);
 
+        jButton7.setBackground(new java.awt.Color(255, 102, 102));
+        jButton7.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(21, 150, 203));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/historial-clinico-32.png"))); // NOI18N
+        jButton7.setText("Ver historial clínico");
+        jButton7.setBorderPainted(false);
+        jButton7.setContentAreaFilled(false);
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7);
+        jButton7.setBounds(730, 320, 220, 30);
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 630));
 
         pack();
@@ -645,6 +664,17 @@ public class FormPaciente extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "clic en combo");
     }//GEN-LAST:event_jComboBoxGeneroMouseClicked
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        String ci = jTextFieldCI.getText();
+        if( ! ci.isEmpty() ){
+            FormHistorialClinico form = new FormHistorialClinico( ci, FormPaciente.this );
+            FormHistorialClinico.jLabelIDpaciente.setText( ci );
+            FormHistorialClinico.jLabelNombrepaciente.setText( jTextFieldNombreCompleto.getText() );
+            form.setVisible(true);
+        }else
+            JOptionPane.showMessageDialog(null, "Seleccione un paciente!!!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -653,6 +683,7 @@ public class FormPaciente extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonBuscarPorCI;
     private javax.swing.JComboBox<String> jComboBoxGenero;
     private com.toedter.calendar.JDateChooser jDateChooserFechaNac;

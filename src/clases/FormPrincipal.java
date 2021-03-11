@@ -7,6 +7,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     public FormPrincipal() {
         initComponents();
         this.setLocationRelativeTo(FormPrincipal.this); //ventana centrado
+        jLabelBackground.requestFocus(); //para el foco quede aquí, y no en el boton medico
 //        this.setOpacity(0.5f);
 
     }
@@ -25,7 +26,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISTEMA PRIVADO CLINICA GENERAL LAS VEGAS");
@@ -121,8 +122,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 190, 40));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/img-background-2.jpg"))); // NOI18N
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1410, 660));
+        jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/img-background-2.jpg"))); // NOI18N
+        jPanel2.add(jLabelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1410, 660));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,12 +144,12 @@ public class FormPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        FormPaciente pac = new FormPaciente();
+        FormPaciente pac = new FormPaciente(FormPrincipal.this);
         pac.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        FormMedico medico = new FormMedico();
+        FormMedico medico = new FormMedico(FormPrincipal.this);
         medico.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -173,7 +174,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelBackground;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
