@@ -32,26 +32,50 @@ public class Consulta {
         this.id_medico = id_medico;
     }
     
-    public void mostrarDatosConsulta(JTable jtable){
+    public void mostrarDatosConsulta(JTable jtable, String fechaInicio, String fechaFin){
         try {
-            String [] titulos = {"CI", "NOMBRES","CELULAR","EMAIL","FECHA_NAC", "GENERO", "DIRECCION", "OCUPACIÓN", "FECHA_REG"};
-            DefaultTableModel model = new DefaultTableModel(null, titulos);
+            String [] tituloEncabezado = {"PACIENTE", "RAZON O MOTIVO", "FECHA","INICIO","FIN","PRECIO Bs.", "MEDICO"};
             
-            ResultSet rs=con.ejecutarConsulta("SELECT p.* FROM  persona p, paciente pac WHERE p.ci=pac.ci;");
-            ResultSetMetaData datos = rs.getMetaData();
+            String consulta_1_paciente = "SELECT c.id, per.nombre as paciente, c.razon_motivo, c.fecha, c.hora_ini, c.hora_fin, c.precio\n" +
+                                            "FROM consulta c, paciente p, persona per\n" +
+                                            "WHERE c.id_paciente=p.ci AND per.ci=p.ci\n" +
+                                            "AND c.fecha BETWEEN '"+fechaInicio+"' AND '"+fechaFin+"'\n" +
+                                            "ORDER BY c.id;";
+
+            String consulta_2_paciente = "SELECT c.id, per.nombre as medico\n" +
+                                            "FROM consulta c, medico m, persona per\n" +
+                                            "WHERE c.id_medico=m.ci AND per.ci=m.ci\n" +
+                                            "AND c.fecha BETWEEN '"+fechaInicio+"' AND '"+fechaFin+"'\n" +
+                                            "ORDER BY c.id;";
             
-            int nc=datos.getColumnCount();
+            ResultSet rs_1=con.ejecutarConsulta(consulta_1_paciente);
+            ResultSet rs_2=con.ejecutarConsulta(consulta_2_paciente);
+                      
             
-            while (rs.next()) {
-                Object fila []= new Object [nc];
-                for(int i=0;i<nc;i++){
-                    fila[i]=rs.getObject(i+1);
+        
+            DefaultTableModel model = new DefaultTableModel(null, tituloEncabezado);
+            
+            ResultSetMetaData datos = rs_1.getMetaData();  
+            int num_columnas = datos.getColumnCount();
+            
+            while(rs_1.next()){
+                rs_2.next();
+                
+                Object datosPorFila []=new Object[num_columnas]; 
+                for(int i=1; i<=num_columnas; i++){
+                    if(i==num_columnas)
+                        datosPorFila[i-1]=rs_2.getObject(2); //solo nombre del medico
+                    else{
+                        int columnIndex=i+1;
+                        datosPorFila[i-1]=rs_1.getObject(columnIndex); //todas las columnas pero sin el nombre del medico
+                    }
                 }
-                model.addRow(fila);
+                model.addRow(datosPorFila);
             }
+            
             jtable.setModel(model);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al mostrar clientes!\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al mostrar consultas!\n"+ex.getMessage());
         }
     }
     

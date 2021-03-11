@@ -287,7 +287,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFielocupacion.setBorder(null);
         jTextFielocupacion.setName(""); // NOI18N
         jTextFielocupacion.setSelectedTextColor(new java.awt.Color(51, 51, 51));
-        jTextFielocupacion.setSelectionColor(new java.awt.Color(102, 255, 102));
+        jTextFielocupacion.setSelectionColor(new java.awt.Color(21, 150, 203));
         jTextFielocupacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFielocupacionKeyTyped(evt);
@@ -307,7 +307,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFieldCI.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldCI.setName(""); // NOI18N
         jTextFieldCI.setSelectedTextColor(new java.awt.Color(51, 51, 51));
-        jTextFieldCI.setSelectionColor(new java.awt.Color(102, 255, 102));
+        jTextFieldCI.setSelectionColor(new java.awt.Color(21, 150, 203));
         jTextFieldCI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldCIKeyTyped(evt);
@@ -323,7 +323,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFieldNombreCompleto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldNombreCompleto.setName(""); // NOI18N
         jTextFieldNombreCompleto.setSelectedTextColor(new java.awt.Color(51, 51, 51));
-        jTextFieldNombreCompleto.setSelectionColor(new java.awt.Color(102, 255, 102));
+        jTextFieldNombreCompleto.setSelectionColor(new java.awt.Color(21, 150, 203));
         jTextFieldNombreCompleto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldNombreCompletoKeyTyped(evt);
@@ -342,7 +342,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFieldcelular.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldcelular.setName(""); // NOI18N
         jTextFieldcelular.setSelectedTextColor(new java.awt.Color(51, 51, 51));
-        jTextFieldcelular.setSelectionColor(new java.awt.Color(102, 255, 102));
+        jTextFieldcelular.setSelectionColor(new java.awt.Color(21, 150, 203));
         jTextFieldcelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldcelularKeyTyped(evt);
@@ -359,7 +359,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFieldEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldEmail.setName(""); // NOI18N
         jTextFieldEmail.setSelectedTextColor(new java.awt.Color(51, 51, 51));
-        jTextFieldEmail.setSelectionColor(new java.awt.Color(102, 255, 102));
+        jTextFieldEmail.setSelectionColor(new java.awt.Color(21, 150, 203));
         jPanel1.add(jTextFieldEmail);
         jTextFieldEmail.setBounds(660, 120, 260, 30);
 
@@ -382,7 +382,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextFielddireccion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFielddireccion.setName(""); // NOI18N
         jTextFielddireccion.setSelectedTextColor(new java.awt.Color(51, 51, 51));
-        jTextFielddireccion.setSelectionColor(new java.awt.Color(102, 255, 102));
+        jTextFielddireccion.setSelectionColor(new java.awt.Color(21, 150, 203));
         jTextFielddireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFielddireccionKeyTyped(evt);
@@ -563,6 +563,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextAreaExperiencia.setForeground(new java.awt.Color(21, 150, 203));
         jTextAreaExperiencia.setRows(5);
         jTextAreaExperiencia.setBorder(null);
+        jTextAreaExperiencia.setSelectionColor(new java.awt.Color(21, 150, 203));
         jTextAreaExperiencia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextAreaExperienciaKeyTyped(evt);
@@ -581,6 +582,7 @@ public class FormMedico extends javax.swing.JFrame {
         jTextAreaTrabajosAnt.setForeground(new java.awt.Color(21, 150, 203));
         jTextAreaTrabajosAnt.setRows(5);
         jTextAreaTrabajosAnt.setBorder(null);
+        jTextAreaTrabajosAnt.setSelectionColor(new java.awt.Color(21, 150, 203));
         jTextAreaTrabajosAnt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextAreaTrabajosAntKeyTyped(evt);

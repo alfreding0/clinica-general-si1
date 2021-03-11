@@ -132,7 +132,7 @@ public class HistorialClinico {
                 }
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al mostrar clientes!\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al mostrar historial clinico!\n"+ex.getMessage());
         }
     }
     
