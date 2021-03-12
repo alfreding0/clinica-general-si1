@@ -15,11 +15,11 @@ import utils.PlaceHolder;
  */
 public class FormPaciente extends javax.swing.JFrame {
     private PlaceHolder placeholder;
-    private final Class formConsulta;
+    private final Class formularioEmisor;
     
     public FormPaciente(Component component) {
         initComponents();
-        this.formConsulta = component.getClass();
+        this.formularioEmisor = component.getClass();
         this.setLocationRelativeTo(component); //Mostrar esta ventana centrado al formulario principal
         this.mostrarDatos();
         this.repintarHeaderTabla();
@@ -174,23 +174,26 @@ public class FormPaciente extends javax.swing.JFrame {
     
     private void enviarDatosPaciente(){
         if(!jTextFieldCI.getText().isEmpty()){
-            if(formConsulta == FormConsulta.class){ //verifica si la instancia formConsulta es del mismo tipo que FormConsulta, para saber que se abrió esta ventana desde allí.
+            if(formularioEmisor == FormConsulta.class){ //verifica si la instancia formularioEmisor es del mismo tipo que FormConsulta, para saber que se abrió esta ventana desde allí.
                 FormConsulta.jTextFieldIdPaciente.setText(jTextFieldCI.getText());
                 FormConsulta.jTextFieldNombrePaciente.setText(jTextFieldNombreCompleto.getText());
-                this.dispose();
+            }else if(formularioEmisor == FormTratamiento.class){ //verifica si la instancia formularioEmisor es del mismo tipo que FormTratamiento 
+                FormTratamiento.jTextFieldIdPaciente.setText(jTextFieldCI.getText());
+                FormTratamiento.jTextFieldNombrePaciente.setText(jTextFieldNombreCompleto.getText());
             }
+            this.dispose();
         }else
             JOptionPane.showMessageDialog(null, "Debe seleccionar un Paciente!!!");
     }
     
     /**
-     * Si este formulario se abre desde FormConsulta para registrar un nuevo paciente,
+     * Si este formulario se abre desde FormConsulta ó FormTratamiento para registrar un nuevo paciente,
      * entonces se habilitará el botón enviar datos, de lo contrario significa que
      * ha sido abierto desde el FormPrincipal por lo que no se necesita enviar datos
      * a ningun formulario.
      */
     private void habilitarBotonEnviarDatos(){
-        if(formConsulta == FormConsulta.class)
+        if((formularioEmisor == FormConsulta.class) || (formularioEmisor == FormTratamiento.class))
             jButtonEnviarDatos.setVisible(true);
         else
             jButtonEnviarDatos.setVisible(false);

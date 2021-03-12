@@ -32,3 +32,34 @@ FROM consulta c, medico m, persona per
 WHERE c.id_medico=m.ci AND per.ci=m.ci
 AND c.fecha BETWEEN '10-3-21' AND '11-3-21'
 ORDER BY c.id;
+
+
+
+
+
+
+
+
+
+
+
+--TRATAMIENTOS ===============================================================
+--(buscar los ultimos tratamientos sin filtro)
+SELECT t.id, per.nombre as paciente, t.duracion_dias, t.descripcion, t.costo, t.id_medico, (select min(nombre) from persona where ci=t.id_medico) as medico
+FROM tratamiento t, paciente p, persona per
+WHERE t.id_paciente=p.ci AND per.ci=p.ci
+ORDER BY t.id DESC
+LIMIT 8;
+--(para buscar tratamientos de un paciente por su CI)
+SELECT t.id, per.nombre as paciente, t.duracion_dias, t.descripcion, t.costo, t.id_medico, (select min(nombre) from persona where ci=t.id_medico) as medico
+FROM tratamiento t, paciente p, persona per
+WHERE t.id_paciente=p.ci AND per.ci=p.ci AND p.ci='12341234'
+ORDER BY t.id DESC
+LIMIT 8;
+
+
+--(Buscar para edición)
+SELECT t.id, t.duracion_dias, t.descripcion, t.costo, pa.ci as id_paciente, per.nombre 
+FROM  tratamiento t, paciente pa, persona per 
+WHERE t.id_paciente=pa.ci AND pa.ci=per.ci 
+AND t.id='2';

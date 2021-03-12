@@ -50,3 +50,7 @@ UPDATE historial_clinico SET epilepsia_convulciones = true,
 INSERT INTO consulta (razon_motivo, hora_ini, hora_fin, precio, id_paciente, id_medico) 
 			VALUES ('sin motivos', '12:34', '13:38', '130.23', '983455', '862834');
 
+
+
+INSERT INTO tratamiento (duracion_dias, descripcion, costo, id_paciente, id_medico) 
+VALUES ('12', 'limpieza total', '34.58', '813264', '865786');

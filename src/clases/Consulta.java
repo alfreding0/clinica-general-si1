@@ -40,16 +40,16 @@ public class Consulta {
                                             "FROM consulta c, paciente p, persona per\n" +
                                             "WHERE c.id_paciente=p.ci AND per.ci=p.ci\n" +
                                             "AND c.fecha BETWEEN '"+fechaInicio+"' AND '"+fechaFin+"'\n" +
-                                            "ORDER BY c.id;";
+                                            "ORDER BY c.id DESC;";
 
-            String consulta_2_paciente = "SELECT c.id, per.nombre as medico\n" +
+            String consulta_2_medico = "SELECT c.id, per.nombre as medico\n" +
                                             "FROM consulta c, medico m, persona per\n" +
                                             "WHERE c.id_medico=m.ci AND per.ci=m.ci\n" +
                                             "AND c.fecha BETWEEN '"+fechaInicio+"' AND '"+fechaFin+"'\n" +
-                                            "ORDER BY c.id;";
+                                            "ORDER BY c.id DESC;";
             
             ResultSet rs_1=con.ejecutarConsulta(consulta_1_paciente);
-            ResultSet rs_2=con.ejecutarConsulta(consulta_2_paciente);
+            ResultSet rs_2=con.ejecutarConsulta(consulta_2_medico);
                       
             
         
