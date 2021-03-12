@@ -9,15 +9,14 @@ import utils.HeaderTable;
 /** @author alfreding0 */
 
 
-public class FormHistorialTratamiento extends javax.swing.JFrame {
-
-    private String id_historial_tratamiento="0";
+public class FormPagoTratamiento extends javax.swing.JFrame {
     
-    public FormHistorialTratamiento(Component component) {
+    public FormPagoTratamiento(Component component) {
         initComponents();
         this.setLocationRelativeTo(component);
         this.repintarHeaderTabla();
         this.mostrarDatos(FormTratamiento.jLabelSelectedID.getText());
+        this.deshabilitarGuardar(AL_ABRIR);
     }
     
     private void repintarHeaderTabla(){
@@ -28,26 +27,31 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
     
     private void fijarAnchoColumnasTabla(){
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);//ID
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);//detalle
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(120);//fecha_hora
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);//fecha_hora
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);//monto
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);//saldo restante
     }
     
     private void mostrarDatos(String id_tratamiento){
-        HistorialTratamiento historial = new HistorialTratamiento();
-        historial.mostrarDatosHistorial(jTable1, id_tratamiento);
+        PagoTratamiento pagotrat=  new PagoTratamiento();
+        pagotrat.mostrarPagoTratamiento(jTable1, id_tratamiento);
         this.fijarAnchoColumnasTabla();
     }
     
     private void guardar(){
         if(this.validarCamposLlenos()){
-            HistorialTratamiento hist = new HistorialTratamiento(
-                jTextAreaDetalle.getText(), 
+            float saldo_restante = Float.parseFloat(jLabelTratCosto.getText()) - Float.parseFloat(jSpinnerMonto.getValue().toString());
+            PagoTratamiento pagotrat = new PagoTratamiento(
+                jSpinnerMonto.getValue().toString(),
+                String.valueOf(saldo_restante),
                 jLabelIdTratamiento.getText()
             );
 
-            boolean estado = hist.registrarHistorialTratamiento( id_historial_tratamiento );
+            boolean estado = pagotrat.registrarPagosTratamiento();
             if(estado){
                 JOptionPane.showMessageDialog(null, "Se ha guardado satisfactoriamente!");
+                pagotrat.refrescarMontoYSaldo();
+                this.deshabilitarGuardar(AL_GUARDAR);
                 this.mostrarDatos(jLabelIdTratamiento.getText());
                 this.limpiarCampos();
             }else
@@ -58,23 +62,22 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
     
     private void nuevo(){
         this.limpiarCampos();
-        jTextAreaDetalle.requestFocus();
     }
         
     private boolean validarCamposLlenos(){
-        return !jTextAreaDetalle.getText().isEmpty();
+        return !jSpinnerMonto.getValue().toString().equals("0.0");
     }
     
     private void limpiarCampos(){
-        jTextAreaDetalle.setText("");
-        id_historial_tratamiento = "0";
+        jSpinnerMonto.setValue(0.00f);
     }
     
     private void limpiarTabla(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
-        model.addColumn("DETALLE");
         model.addColumn("FECHA Y HORA");
+        model.addColumn("MONTO");
+        model.addColumn("SALDO RESTANTE");
         jTable1.setModel(model);
         this.fijarAnchoColumnasTabla();
     }
@@ -83,13 +86,31 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
         this.limpiarCampos();
         this.limpiarTabla();
     }
+    
+    private static final int AL_ABRIR=0;
+    private static final int AL_GUARDAR=1;
+    
+    private void deshabilitarGuardar(int origen){
+        if(origen == AL_ABRIR){
+            float total = Float.parseFloat(FormTratamiento.jSpinnerPrecio.getValue().toString());
+            float pagado = Float.parseFloat(FormTratamiento.jTextFieldPagado.getText());
+            if(total == pagado){
+                jButtonGuardar.setEnabled(false);
+            }
+        }else{
+            if(jLabelTratCosto.getText().equals(jLabelTratPagado.getText())){
+                jButtonGuardar.setEnabled(false);
+                JOptionPane.showMessageDialog(null, "Felicidades, se ha completado el pago!");
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
         jLabelIdTratamiento = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -98,8 +119,6 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextAreaDetalle = new javax.swing.JTextArea();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -117,6 +136,7 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
         jTextAreaTratDescripcion = new javax.swing.JTextArea();
         jLabel13 = new javax.swing.JLabel();
         jLabelTratPaciente = new javax.swing.JLabel();
+        jSpinnerMonto = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -126,25 +146,26 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(21, 122, 163)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(21, 150, 203));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 204, 204));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/guardar-20.png"))); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGuardar.setBackground(new java.awt.Color(21, 150, 203));
+        jButtonGuardar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jButtonGuardar.setForeground(new java.awt.Color(204, 204, 204));
+        jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/guardar-20.png"))); // NOI18N
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setBorderPainted(false);
+        jButtonGuardar.setContentAreaFilled(false);
+        jButtonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 120, -1));
+        jPanel1.add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 120, -1));
 
         jLabelIdTratamiento.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelIdTratamiento.setForeground(new java.awt.Color(21, 150, 203));
+        jLabelIdTratamiento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelIdTratamiento.setText("0");
-        jPanel1.add(jLabelIdTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 150, 30));
+        jPanel1.add(jLabelIdTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 150, 30));
 
         jButton2.setBackground(new java.awt.Color(255, 102, 102));
         jButton2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -234,43 +255,25 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 390, 10));
-
-        jTextAreaDetalle.setBackground(new java.awt.Color(63, 63, 63));
-        jTextAreaDetalle.setColumns(20);
-        jTextAreaDetalle.setForeground(new java.awt.Color(21, 150, 203));
-        jTextAreaDetalle.setRows(5);
-        jTextAreaDetalle.setBorder(null);
-        jTextAreaDetalle.setSelectionColor(new java.awt.Color(21, 150, 203));
-        jTextAreaDetalle.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextAreaDetalleKeyTyped(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextAreaDetalleKeyReleased(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTextAreaDetalle);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 760, 60));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 860, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 860, 10));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(21, 150, 203));
-        jLabel5.setText("HISTORIAL TRATAMIENTO ID:");
+        jLabel5.setText("PAGO DE TRATAMIENTO");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 400, 30));
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(21, 150, 203));
-        jLabel11.setText("DETALLE:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 100, 28));
+        jLabel11.setText("CANCELANDO (Bs):");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 130, 40));
 
         jPanel2.setBackground(new java.awt.Color(63, 63, 63));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelTratPagado.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabelTratPagado.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelTratPagado.setForeground(new java.awt.Color(255, 102, 51));
         jLabelTratPagado.setText("70");
-        jPanel2.add(jLabelTratPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 80, 28));
+        jPanel2.add(jLabelTratPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 110, 28));
 
         jLabelTratDuracionDias.setForeground(new java.awt.Color(21, 150, 203));
         jLabelTratDuracionDias.setText("50");
@@ -284,27 +287,27 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(21, 150, 203));
         jLabel15.setText("COSTO TOTAL (Bs):");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 140, 28));
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 140, 28));
 
-        jLabelTratCosto.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabelTratCosto.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelTratCosto.setForeground(new java.awt.Color(255, 102, 51));
         jLabelTratCosto.setText("120");
-        jPanel2.add(jLabelTratCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 80, 28));
+        jPanel2.add(jLabelTratCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 110, 28));
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(21, 150, 203));
         jLabel17.setText("PAGADO (Bs):");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 100, 28));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 100, 28));
 
-        jLabelTratRestante.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabelTratRestante.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelTratRestante.setForeground(new java.awt.Color(255, 102, 51));
         jLabelTratRestante.setText("50");
-        jPanel2.add(jLabelTratRestante, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 80, 28));
+        jPanel2.add(jLabelTratRestante, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 120, 120, 28));
 
         jLabel19.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(21, 150, 203));
         jLabel19.setText("X COBRAR (Bs):");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 110, 28));
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 110, 28));
 
         jLabel21.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(21, 150, 203));
@@ -331,16 +334,22 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
         jLabelTratPaciente.setText("987396 - JUNIOR CASTELLOS");
         jPanel2.add(jLabelTratPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 450, 28));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 860, 120));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 860, 160));
+
+        jSpinnerMonto.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jSpinnerMonto.setModel(new javax.swing.SpinnerNumberModel(0.00f, 0.00f, null, 0.01f));
+        jSpinnerMonto.setToolTipText("");
+        jSpinnerMonto.setName(""); // NOI18N
+        jPanel1.add(jSpinnerMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, 160, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         this.guardar();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
@@ -355,39 +364,28 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
     
     private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
-        if( jTable1.getSelectedRowCount()>0 ){
-            String id = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
-            HistorialTratamiento historial = new HistorialTratamiento();
-            historial.buscarParaEdicion(id);
-
-            jTextAreaDetalle.setText(historial.getDetalle());
-            id_historial_tratamiento = historial.getId();
-        }
+//        if( jTable1.getSelectedRowCount()>0 ){
+//            String id = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
+//            HistorialTratamiento historial = new HistorialTratamiento();
+//            historial.buscarParaEdicion(id);
+//
+//            jTextAreaDetalle.setText(historial.getDetalle());
+//            id_pago_tratamiento = historial.getId();
+//        }
     }//GEN-LAST:event_jTable1MouseReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.nuevo();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextAreaDetalleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDetalleKeyTyped
-        char c=evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' && c!='-' && (c<'0' || c>'9') && c!='ñ' && c!='Ñ'){
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextAreaDetalleKeyTyped
-
-    private void jTextAreaDetalleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDetalleKeyReleased
-        jTextAreaDetalle.setText(jTextAreaDetalle.getText().toUpperCase());
-    }//GEN-LAST:event_jTextAreaDetalleKeyReleased
-
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -405,12 +403,11 @@ public class FormHistorialTratamiento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSpinner jSpinnerMonto;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextAreaDetalle;
     public static javax.swing.JTextArea jTextAreaTratDescripcion;
     // End of variables declaration//GEN-END:variables
 
