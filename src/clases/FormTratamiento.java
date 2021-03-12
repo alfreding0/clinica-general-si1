@@ -45,9 +45,6 @@ public class FormTratamiento extends javax.swing.JFrame {
             int status = JOptionPane.showConfirmDialog(this, "Confirme que desea guardar!");
             if(status == JOptionPane.YES_OPTION){
                 Tratamiento c = new Tratamiento(
-                        
-                        
-                        
                         jSpinnerDuracionDias.getValue().toString(), 
                         jTextAreaDescripcion.getText(), 
                         jSpinnerPrecio.getValue().toString().trim(), 
@@ -73,8 +70,14 @@ public class FormTratamiento extends javax.swing.JFrame {
     }
     
     private void eliminar(){
-        Tratamiento trat = new Tratamiento();
-//        trat.eliminarTratamiento(id);
+        if( ! jLabelSelectedID.getText().equals("0") ){
+            int res = JOptionPane.showConfirmDialog(this, "Confirme para eliminar!");
+            if(res==JOptionPane.YES_OPTION){
+                Tratamiento trat = new Tratamiento();
+                trat.eliminarTratamiento(jLabelSelectedID.getText());
+                this.mostrarDatos();
+            }
+        }   
     }
     
     private boolean validarCamposLlenos(){
@@ -94,6 +97,7 @@ public class FormTratamiento extends javax.swing.JFrame {
         jSpinnerPrecio.setValue(0.00f);
         jTextFielBuscarPorCI.setText("");
         jLabelSelectedID.setText("0");
+        jTextFieldPagado.setText("0");
     }
     
     private void limpiarTabla(){
@@ -156,6 +160,8 @@ public class FormTratamiento extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jSpinnerDuracionDias = new javax.swing.JSpinner();
         jSpinnerPrecio = new javax.swing.JSpinner();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldPagado = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabelll = new javax.swing.JLabel();
 
@@ -400,22 +406,35 @@ public class FormTratamiento extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 102, 51));
         jLabel3.setText("Precio (Bs.):");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 160, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 160, 30));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(21, 150, 203));
         jLabel2.setText("DURACION DIAS:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 110, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 20));
 
         jSpinnerDuracionDias.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jSpinnerDuracionDias.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        jPanel2.add(jSpinnerDuracionDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 30));
+        jPanel2.add(jSpinnerDuracionDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 110, 30));
 
-        jSpinnerPrecio.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jSpinnerPrecio.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jSpinnerPrecio.setModel(new javax.swing.SpinnerNumberModel(0.00f, 0.00f, null, 0.01f));
         jSpinnerPrecio.setToolTipText("");
         jSpinnerPrecio.setName(""); // NOI18N
-        jPanel2.add(jSpinnerPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 160, 40));
+        jPanel2.add(jSpinnerPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 160, 80));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 102, 51));
+        jLabel5.setText("PAGADO (Bs):");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 110, 20));
+
+        jTextFieldPagado.setEditable(false);
+        jTextFieldPagado.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldPagado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTextFieldPagado.setForeground(new java.awt.Color(51, 51, 51));
+        jTextFieldPagado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldPagado.setText("0");
+        jPanel2.add(jTextFieldPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 110, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 180, 330, 120));
 
@@ -466,6 +485,7 @@ public class FormTratamiento extends javax.swing.JFrame {
             jTextAreaDescripcion.setText(tratamiento.getDescripcion());
             jSpinnerDuracionDias.setValue(Integer.parseInt(tratamiento.getDuracion_dias()));
             jSpinnerPrecio.setValue(Float.parseFloat(tratamiento.getCosto()));
+            jTextFieldPagado.setText(tratamiento.getPagado());
             jLabelSelectedID.setText(tratamiento.getId());
         }
     }//GEN-LAST:event_jTable1MouseReleased
@@ -479,14 +499,23 @@ public class FormTratamiento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonHistorialClinicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHistorialClinicoActionPerformed
-//        String ci = jTextFieldIdPaciente.getText();
-//        if( ! ci.isEmpty() ){
-//            FormHistorialClinico form = new FormHistorialClinico( ci, FormPaciente.this );
-//            FormHistorialClinico.jLabelIDpaciente.setText( ci );
-//            FormHistorialClinico.jLabelNombrepaciente.setText( jTextFieldNombreCompleto.getText() );
-//            form.setVisible(true);
-//        }else
-//        JOptionPane.showMessageDialog(null, "Seleccione un paciente!!!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        String id_tratamiento = jLabelSelectedID.getText();
+        if( ! id_tratamiento.equals("0")){
+            FormHistorialTratamiento historial = new FormHistorialTratamiento(FormTratamiento.this);
+            FormHistorialTratamiento.jLabelIdTratamiento.setText( id_tratamiento );
+            
+            FormHistorialTratamiento.jLabelTratPaciente.setText( jTextFieldIdPaciente.getText() + " - " + jTextFieldNombrePaciente.getText() );
+            FormHistorialTratamiento.jLabelTratDuracionDias.setText( jSpinnerDuracionDias.getValue().toString() );
+            FormHistorialTratamiento.jTextAreaTratDescripcion.setText( jTextAreaDescripcion.getText() );
+            
+            float costoTotal = Float.parseFloat(jSpinnerPrecio.getValue().toString());
+            float pagado = Float.parseFloat(jTextFieldPagado.getText());
+            FormHistorialTratamiento.jLabelTratCosto.setText( String.valueOf(costoTotal) );
+            FormHistorialTratamiento.jLabelTratPagado.setText( String.valueOf(pagado) );
+            FormHistorialTratamiento.jLabelTratRestante.setText( String.valueOf(costoTotal-pagado) );
+            historial.setVisible(true);
+        }else
+            JOptionPane.showMessageDialog(null, "Seleccione un Tratamiento de la tabla!!!", "Advertencia", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButtonHistorialClinicoActionPerformed
 
     private void jTextAreaDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionKeyTyped
@@ -536,8 +565,9 @@ public class FormTratamiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabelSelectedID;
+    public static javax.swing.JLabel jLabelSelectedID;
     private javax.swing.JLabel jLabelll;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -552,6 +582,7 @@ public class FormTratamiento extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFielBuscarPorCI;
     public static javax.swing.JTextField jTextFieldIdPaciente;
     public static javax.swing.JTextField jTextFieldNombrePaciente;
+    public static javax.swing.JTextField jTextFieldPagado;
     // End of variables declaration//GEN-END:variables
 
 }

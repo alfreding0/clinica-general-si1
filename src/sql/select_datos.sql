@@ -63,3 +63,13 @@ SELECT t.id, t.duracion_dias, t.descripcion, t.costo, pa.ci as id_paciente, per.
 FROM  tratamiento t, paciente pa, persona per 
 WHERE t.id_paciente=pa.ci AND pa.ci=per.ci 
 AND t.id='2';
+
+
+
+
+
+
+
+
+--HISTORIAL DE TRATAMIENTO ===============================================================
+SELECT id, detalle, fecha_hora FROM historial WHERE id_tratamiento=1;

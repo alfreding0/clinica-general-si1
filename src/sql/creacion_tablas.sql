@@ -82,10 +82,11 @@ create table tratamiento(
 	duracion_dias int not null,
 	descripcion text not null,
 	costo float(2) not null,
+        pagado float(2) default 0.0,
 	id_paciente varchar(12) not null, foreign key (id_paciente) references paciente (ci),
 	id_medico varchar(12) not null, foreign key (id_medico) references medico (ci)
 	on update cascade on delete cascade
-);
+);--alter table tratamiento add column pagado float(2) default 0.0; --esto agregué porque ya tenía datos
 
 create table historial(
 	id serial primary key,
@@ -100,7 +101,8 @@ create table pago_tratamiento(
 	id serial primary key,
 	fecha_hora timestamp default current_timestamp,
 	monto float(2) not null,
+        saldo_restante float(2) default 0.0,
 	id_tratamiento int not null, foreign key (id_tratamiento) references tratamiento (id),
 	id_paciente varchar(12) not null, foreign key (id_paciente) references paciente (ci)
 	on update cascade on delete cascade
-);
+);--alter table pago_tratamiento add column saldo_restante float(2) default 0.0; --lo agregué después no más

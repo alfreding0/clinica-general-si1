@@ -3,8 +3,6 @@ package clases;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +16,7 @@ public class Tratamiento {
     private String costo;
     private String id_paciente;
     private String id_medico;    
+    private String pagado;
     
     
     private final Conexion con = new Conexion();
@@ -48,6 +47,10 @@ public class Tratamiento {
         return costo;
     }
 
+    public String getPagado() {
+        return pagado;
+    }
+    
     public String getId_paciente() {
         return id_paciente;
     }
@@ -121,7 +124,7 @@ public class Tratamiento {
     
     public void buscarParaEdicion(String id){
         try {            
-            String consulta = "SELECT t.id, t.duracion_dias, t.descripcion, t.costo, pa.ci as id_paciente \n" +
+            String consulta = "SELECT t.id, t.duracion_dias, t.descripcion, t.costo, t.pagado, pa.ci as id_paciente \n" +
                                 "FROM  tratamiento t, paciente pa, persona per \n" +
                                 "WHERE t.id_paciente=pa.ci AND pa.ci=per.ci \n" +
                                 "AND t.id='"+id+"';";
@@ -132,6 +135,7 @@ public class Tratamiento {
                         this.duracion_dias = rs.getString("duracion_dias");
                         this.descripcion = rs.getString("descripcion");
                         this.costo = rs.getString("costo");
+                        this.pagado = rs.getString("pagado");
                         this.id_paciente = rs.getString("id_paciente");
                     }catch(SQLException e){
                         JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
