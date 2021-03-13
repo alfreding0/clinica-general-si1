@@ -21,7 +21,7 @@ insert into paciente (ci) values ('983455');
 
 
 
-insert into usuario (username, password, id_medico) values ('alfreding0', md5('user'), '862834');
+INSERT INTO usuario (username, password, id_medico) VALUES ('alfreding0', md5('user'), '862834');
 
 UPDATE historial_clinico SET epilepsia_convulciones = true, 
 							epilepsia_convulciones_tratamiento = 'ninguno', 

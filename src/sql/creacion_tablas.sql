@@ -27,9 +27,10 @@ create table paciente(
 
 create table usuario(
 	id serial primary key,
-	username varchar(20) not null,
+	username varchar(20) not null unique,
 	password varchar(50) not null,
 	creado_en timestamp  default current_timestamp,
+        privilegio char(1) not null,
 	id_medico varchar(12) not null,
 	foreign key (id_medico) references medico (ci)
 	on update cascade on delete cascade

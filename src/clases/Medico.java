@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import sql.Conexion;
 import utils.ModeloMostrarDatos;
 
@@ -125,6 +126,19 @@ public class Medico extends Persona{
             }
         } catch (SQLException ex) {
             Logger.getLogger(Medico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void buscarMedicoPorCI(JTextField jtextfield, String ci){
+        try {
+            String consulta = "SELECT p.nombre FROM persona p, medico m WHERE p.ci=m.ci AND m.ci='"+ci+"';";
+            ResultSet rs = con.ejecutarConsulta(consulta);
+            if( rs.next() )
+                jtextfield.setText(rs.getString("nombre"));
+            else
+                JOptionPane.showMessageDialog(null, "No existe el médico con CI: " + ci);
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar médico!\n" + ex.getMessage());
         }
     }
 }

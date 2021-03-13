@@ -11,6 +11,15 @@ public class FormPrincipal extends javax.swing.JFrame {
 //        this.setOpacity(0.5f);
 
     }
+    
+    //si es secretaria, va a mostrar todo expecto usuarios. y de la misma manera al revés.
+    public void mostrarBotonesSegunTipoUsuario(boolean val){
+        jButtonMedicos.setVisible(val);
+        jButtonPacientes.setVisible(val);
+        jButtonConsultas.setVisible(val);
+        jButtonTratamientos.setVisible(val);
+        jButtonUsuarios.setVisible(!val);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -24,11 +33,12 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabelNombreMedico = new javax.swing.JLabel();
         jLabelIdMedico = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonConsultas = new javax.swing.JButton();
+        jButtonMedicos = new javax.swing.JButton();
+        jButtonPacientes = new javax.swing.JButton();
+        jButtonTratamientos = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButtonUsuarios = new javax.swing.JButton();
         jLabelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,57 +83,57 @@ public class FormPrincipal extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(21, 59, 84));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(153, 204, 255));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/consulta.png"))); // NOI18N
-        jButton1.setText("CONSULTAS");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConsultas.setBackground(new java.awt.Color(153, 204, 255));
+        jButtonConsultas.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jButtonConsultas.setForeground(new java.awt.Color(51, 51, 51));
+        jButtonConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/consulta.png"))); // NOI18N
+        jButtonConsultas.setText("CONSULTAS");
+        jButtonConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonConsultasActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 190, 40));
+        jPanel2.add(jButtonConsultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 190, 40));
 
-        jButton2.setBackground(new java.awt.Color(153, 204, 255));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/doctor.png"))); // NOI18N
-        jButton2.setText("GESTIONAR MEDICOS");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMedicos.setBackground(new java.awt.Color(153, 204, 255));
+        jButtonMedicos.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jButtonMedicos.setForeground(new java.awt.Color(51, 51, 51));
+        jButtonMedicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/doctor.png"))); // NOI18N
+        jButtonMedicos.setText("GESTIONAR MEDICOS");
+        jButtonMedicos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMedicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonMedicosActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 230, 40));
+        jPanel2.add(jButtonMedicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 230, 40));
 
-        jButton4.setBackground(new java.awt.Color(153, 204, 255));
-        jButton4.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(51, 51, 51));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/paciente.png"))); // NOI18N
-        jButton4.setText("GESTIONAR PACIENTES");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPacientes.setBackground(new java.awt.Color(153, 204, 255));
+        jButtonPacientes.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jButtonPacientes.setForeground(new java.awt.Color(51, 51, 51));
+        jButtonPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/paciente.png"))); // NOI18N
+        jButtonPacientes.setText("GESTIONAR PACIENTES");
+        jButtonPacientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonPacientesActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 230, 40));
+        jPanel2.add(jButtonPacientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 230, 40));
 
-        jButton3.setBackground(new java.awt.Color(153, 204, 255));
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 51, 51));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/tratamiento.png"))); // NOI18N
-        jButton3.setText("TRATAMIENTOS");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTratamientos.setBackground(new java.awt.Color(153, 204, 255));
+        jButtonTratamientos.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jButtonTratamientos.setForeground(new java.awt.Color(51, 51, 51));
+        jButtonTratamientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/tratamiento.png"))); // NOI18N
+        jButtonTratamientos.setText("TRATAMIENTOS");
+        jButtonTratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonTratamientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonTratamientosActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 190, 40));
+        jPanel2.add(jButtonTratamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 190, 40));
 
         jButton5.setBackground(new java.awt.Color(255, 102, 102));
         jButton5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -139,8 +149,21 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 560, 120, -1));
 
+        jButtonUsuarios.setBackground(new java.awt.Color(153, 204, 255));
+        jButtonUsuarios.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jButtonUsuarios.setForeground(new java.awt.Color(51, 51, 51));
+        jButtonUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/doctor.png"))); // NOI18N
+        jButtonUsuarios.setText("USUARIOS");
+        jButtonUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUsuariosActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 230, 40));
+
         jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/img-background-2.jpg"))); // NOI18N
-        jPanel2.add(jLabelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 660));
+        jPanel2.add(jLabelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 660));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,36 +183,42 @@ public class FormPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButtonPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPacientesActionPerformed
         FormPaciente pac = new FormPaciente(FormPrincipal.this);
         pac.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonPacientesActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMedicosActionPerformed
         FormMedico medico = new FormMedico(FormPrincipal.this);
         medico.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonMedicosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultasActionPerformed
         FormConsulta cons = new FormConsulta();
         cons.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonConsultasActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonTratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTratamientosActionPerformed
         FormTratamiento trat = new FormTratamiento(FormPrincipal.this);
         trat.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonTratamientosActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButtonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuariosActionPerformed
+        FormUsuario form = new FormUsuario(FormPrincipal.this);
+        form.setVisible(true);
+    }//GEN-LAST:event_jButtonUsuariosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonConsultas;
+    private javax.swing.JButton jButtonMedicos;
+    private javax.swing.JButton jButtonPacientes;
+    private javax.swing.JButton jButtonTratamientos;
+    private javax.swing.JButton jButtonUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

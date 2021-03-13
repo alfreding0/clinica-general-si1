@@ -1,7 +1,7 @@
 package main;
 
 
-import clases.FormPrincipal;
+import clases.FormLogIn;
 import java.sql.SQLException;
 
 /** @author alfreding0 */
@@ -18,8 +18,8 @@ public class Main {
             System.out.println(ex.getMessage());
         }
         
-        FormPrincipal p = new FormPrincipal();
-        p.setVisible(true);
+        FormLogIn form = new FormLogIn();
+        form.setVisible(true);
     }
 }
 /** @author alfreding0 */
