@@ -1,4 +1,7 @@
     package clases;
+
+import javax.swing.JOptionPane;
+
 /** @author alfreding0 */
 
 
@@ -32,6 +35,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabelNombreMedico = new javax.swing.JLabel();
         jLabelIdMedico = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonConsultas = new javax.swing.JButton();
         jButtonMedicos = new javax.swing.JButton();
@@ -70,15 +74,29 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("USUARIO:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 30, 220, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 40, 220, 20));
 
         jLabelNombreMedico.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNombreMedico.setText("Alfredo Gonzales Quiucha");
-        jPanel1.add(jLabelNombreMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 50, 200, 20));
+        jPanel1.add(jLabelNombreMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 60, 150, 20));
 
         jLabelIdMedico.setForeground(new java.awt.Color(255, 255, 255));
         jLabelIdMedico.setText("8611859");
-        jPanel1.add(jLabelIdMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 50, 70, 20));
+        jPanel1.add(jLabelIdMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 60, 70, 20));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/conf.png"))); // NOI18N
+        jLabel5.setText("Configuración");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jLabel5.setIconTextGap(0);
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 0, -1, 30));
 
         jPanel2.setBackground(new java.awt.Color(21, 59, 84));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -212,6 +230,10 @@ public class FormPrincipal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_jButtonUsuariosActionPerformed
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        new FormCambiarPassword(FormPrincipal.this).setVisible(true);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonConsultas;
@@ -223,6 +245,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelBackground;
     public static javax.swing.JLabel jLabelIdMedico;
     public static javax.swing.JLabel jLabelNombreMedico;

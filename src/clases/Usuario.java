@@ -2,7 +2,6 @@ package clases;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import sql.Conexion;
 import utils.ModeloMostrarDatos;
@@ -131,6 +130,28 @@ public class Usuario {
             System.out.println("Ha surgido un error inesperado, intente más tarde!\n"+ex.getMessage());
             return null;
         }
+    }
+    
+    public String verificarUsuarioCambiarPassword(String usuario, String pass){
+        String respuesta;
+        try {
+            String consulta = "SELECT id FROM usuario\n" +
+                    "WHERE id_medico='"+usuario+"' AND password=md5('"+pass+"');"; //va a verificar solo por el CI medico que es fk. Si en caso tiene varias cuentas de usuario seguirá funcionando.
+            ResultSet rs = con.ejecutarConsulta(consulta);
+            if(rs.next()){
+                respuesta = rs.getString("id");
+                return respuesta;
+            }else
+                return null;
+        } catch (SQLException ex) {
+            System.out.println("Ha surgido un error inesperado, intente más tarde!\n"+ex.getMessage());
+            return null;
+        }
+    }
+    
+    public boolean cambiarPasswordUsuario(String idUser, String newPassword){
+        String comando = "UPDATE usuario SET password=md5('"+newPassword+"') WHERE id='"+idUser+"';";
+        return con.ejecutarComando(comando);
     }
 }
 /** @author alfreding0 */
