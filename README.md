@@ -33,6 +33,20 @@ Existen 4 librerias en el proyecto:
 
 
 ### Configurar la Clase Conexion
-#### Para ello, dirigirse a la carpeta o package "sql", dentro encontrarán un archivo Leeme.txt que indica como deben proceder.
 - Proyecto hecho en Netbeans8.2 y Java8 (por lo tanto debe considerar abrirlo con las versiones semejantes o cercanas).
 - Después de haber configurado como dice el archivo Leeme.txt no debería haber ningún error extra.
+#### Pasos
+1. Haga una copia de "ConexionExample.java" con el nombre "Conexion.java" en este mismo package (o directorio).
+2. Luego escriba dentro de la clase los datos de su usuario y contraseña para conectarse a su base de datos en postgresql.
+3. Después de haber configurado esto no debería haber ningún error extra.
+
+### Bases de datos PostgreSQL
+1. Crear una base de datos nueva, ejm: `CREATE DATABASE db_clinica_general;`
+2. Abrir un Editor de Consultas en esa base de datos. (QueryEditor)
+3. Desde allí abrir el archivo para ejecutar todo en un solo click. Está en el dentro del proyecto en el package o carpeta sql con el nombre **01_execute_migration.sql**
+4. Una vez abierto, ejecutar en el icono de Run/Ejecutar. Eso va a crear las tablas, un trigger que es necesario y crear un usuario admin.
+
+### Usuario Default
+Después de crear la base de datos y ejecutar el scrip 01_execute_migration.sql ya puede probar el sistema clinico general.
+User: admin
+Pass: admin
