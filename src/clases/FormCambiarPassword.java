@@ -7,39 +7,42 @@ import javax.swing.JOptionPane;
  * @author alfreding0
  */
 public class FormCambiarPassword extends javax.swing.JFrame {
-    private final Class formularioEmisor;
     private String id_user;
     
     public FormCambiarPassword(Component component) {
         initComponents();
-        this.formularioEmisor = component.getClass();
         this.setLocationRelativeTo(component); //Mostrar esta ventana centrado al formulario principal
     }
     
     private void verificarUsuarioCambiarContra(){
         String pass = JOptionPane.showInputDialog("Introduzca su contraseña actual para verificar!");
-        this.id_user = new Usuario().verificarUsuarioCambiarPassword(FormPrincipal.jLabelIdMedico.getText(), pass);
-        if(this.id_user != null){
-            JOptionPane.showMessageDialog(null, "Se ha verificado que es el propietario de esta cuenta,\nahora puede cambiar su contraseña.");
-            jPasswordFieldNueva.setEditable(true);
-            jPasswordFieldRepetirNueva.setEditable(true);
-        }else
-            JOptionPane.showMessageDialog(null, "Su contraseña no coincide con nuestro registro!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        if(pass != null){ //si en caso da en cancelar
+            this.id_user = new Usuario().verificarUsuarioCambiarPassword(FormPrincipal.jLabelIdMedico.getText(), pass);
+            if(this.id_user != null){
+                JOptionPane.showMessageDialog(null, "Se ha verificado que es el propietario de esta cuenta,\nahora puede cambiar su contraseña.");
+                jPasswordFieldNueva.setEditable(true);
+                jPasswordFieldRepetirNueva.setEditable(true);
+            }else
+                JOptionPane.showMessageDialog(null, "Su contraseña no coincide con nuestro registro!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }
     
     private void guardarCambioContra(){
         String pass1 = jPasswordFieldNueva.getText();
         String pass2 = jPasswordFieldRepetirNueva.getText();
         
-        if(pass1.equals(pass2)){
-            boolean resultado = new Usuario().cambiarPasswordUsuario(this.id_user, pass1);
-            if(resultado){
-                JOptionPane.showMessageDialog(null, "Se ha cambiado la contraseña satisfactoriamente!");
-                this.dispose();
+        if( !pass1.isEmpty() && !pass2.isEmpty() ){
+            if(pass1.equals(pass2)){
+                boolean resultado = new Usuario().cambiarPasswordUsuario(this.id_user, pass1);
+                if(resultado){
+                    JOptionPane.showMessageDialog(null, "Se ha cambiado la contraseña satisfactoriamente!");
+                    this.dispose();
+                }else
+                    JOptionPane.showMessageDialog(null, "No se ha podido cambiar la contraseña, intente más tarde!!!");
             }else
-                JOptionPane.showMessageDialog(null, "No se ha podido cambiar la contraseña, intente más tarde!!!");
+                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden!");
         }else
-            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden!");
+            JOptionPane.showMessageDialog(null, "Complete ambos campos!!!", null, JOptionPane.WARNING_MESSAGE);
     }
 
     @SuppressWarnings("unchecked")

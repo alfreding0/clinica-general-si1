@@ -194,6 +194,7 @@ public class FormLogIn extends javax.swing.JFrame {
 
     private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
         this.ingresarAlSistema();
+        jPasswordField.requestFocus();
     }//GEN-LAST:event_jPasswordFieldActionPerformed
 
     
