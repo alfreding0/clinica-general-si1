@@ -85,8 +85,8 @@ public class Usuario {
             if(rs.next())
                 comando = "UPDATE usuario SET username='"+this.username+"', password=md5('"+this.password+"') WHERE id='"+id+"';";
             else
-                comando = "INSERT INTO usuario (username, password, id_medico) " + 
-                            "VALUES ('"+this.username+"', md5('"+this.password+"'), '"+this.id_medico+"');";
+                comando = "INSERT INTO usuario (username, password, privilegio, id_medico) " + 
+                            "VALUES ('"+this.username+"', md5('"+this.password+"'), '"+this.privilegio+"','"+this.id_medico+"');";
             return con.ejecutarComando(comando);
         } catch (SQLException ex) {
             return false;

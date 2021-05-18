@@ -17,7 +17,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     
     //si es secretaria, va a mostrar todo expecto usuarios. y de la misma manera al revés.
     public void mostrarBotonesSegunTipoUsuario(boolean val){
-        jButtonMedicos.setVisible(val);
+        jButtonMedicos.setVisible(true); //esto siempre va estar visible, para medico y secretaria
         jButtonPacientes.setVisible(val);
         jButtonConsultas.setVisible(val);
         jButtonTratamientos.setVisible(val);
@@ -112,7 +112,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 jButtonConsultasActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonConsultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 190, 40));
+        jPanel2.add(jButtonConsultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 190, 40));
 
         jButtonMedicos.setBackground(new java.awt.Color(153, 204, 255));
         jButtonMedicos.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -125,7 +125,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 jButtonMedicosActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonMedicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 230, 40));
+        jPanel2.add(jButtonMedicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 230, 40));
 
         jButtonPacientes.setBackground(new java.awt.Color(153, 204, 255));
         jButtonPacientes.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -138,7 +138,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 jButtonPacientesActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonPacientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 230, 40));
+        jPanel2.add(jButtonPacientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 230, 40));
 
         jButtonTratamientos.setBackground(new java.awt.Color(153, 204, 255));
         jButtonTratamientos.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -151,7 +151,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 jButtonTratamientosActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonTratamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 190, 40));
+        jPanel2.add(jButtonTratamientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 190, 40));
 
         jButton5.setBackground(new java.awt.Color(255, 102, 102));
         jButton5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -178,7 +178,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 jButtonUsuariosActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 230, 40));
+        jPanel2.add(jButtonUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 230, 40));
 
         jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utils/img-background-2.jpg"))); // NOI18N
         jPanel2.add(jLabelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 660));
