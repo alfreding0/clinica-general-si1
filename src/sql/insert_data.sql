@@ -2,26 +2,17 @@
 INSERT INTO persona (ci, nombre, celular, email, fecha_nac, genero, direccion, ocupacion) VALUES ('862834', 'Alfredo Gonzales Quiucha', '234244',	'alf@gmail.com', '27/7/2000', 'M', 'calle 23', 'Medico cirujano');
 INSERT INTO medico (ci, experiencia, trabajos_ant) VALUES ('862834', 'ninguna', 'ninguna');		
 
-UPDATE persona SET ci='862834', nombre='Alfredo', celular='234244',	email='alf@gmail.com', fecha_nac='27/7/2000', genero='M', direccion='calle 23', ocupacion='Medico cirujano' WHERE ci = '862834';
-UPDATE medico SET experiencia='ninguna', trabajos_ant='algo' WHERE ci = '862834';
-
-DELETE FROM persona WHERE ci = '862834';
-
-
-
-
-
 
 
 
 --PACIENTE
 insert into persona (ci, nombre, celular, email, fecha_nac, genero, direccion, ocupacion)
-			values ('983455', 'Lolita lalita', '234345', 'lolita@gmail.com', '19/4/92', 'F', 'calle 21', 'Medico digestivo');
+	values ('983455', 'Lolita lalita', '234345', 'lolita@gmail.com', '19/4/92', 'F', 'calle 21', 'Medico digestivo');
 insert into paciente (ci) values ('983455');
 
 
 
-INSERT INTO usuario (username, password, id_medico) VALUES ('alfreding0', md5('user'), '862834');
+INSERT INTO usuario (username, password, privilegio, id_medico) VALUES ('alfreding0', md5('alfreding0'), 'A', '862834');
 
 UPDATE historial_clinico SET epilepsia_convulciones = true, 
 							epilepsia_convulciones_tratamiento = 'ninguno', 
@@ -53,4 +44,4 @@ INSERT INTO consulta (razon_motivo, hora_ini, hora_fin, precio, id_paciente, id_
 
 
 INSERT INTO tratamiento (duracion_dias, descripcion, costo, id_paciente, id_medico) 
-VALUES ('12', 'limpieza total', '34.58', '813264', '865786');
+VALUES ('12', 'limpieza total', '34.58', '983455', '862834');

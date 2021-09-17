@@ -65,8 +65,8 @@ public class Usuario {
     
     public void mostrarUsuario(JTable jtable){
         try {
-            String[] tituloEncabezado = {"ID", "USERNAME", "CREADO EN", "MEDICO"};
-            String consulta = "SELECT id, username, creado_en, p.nombre\n" +
+            String[] tituloEncabezado = {"ID", "USERNAME", "CREADO EN", "PRIVILEGIO", "MEDICO"};
+            String consulta = "SELECT id, username, creado_en, privilegio, p.nombre\n" +
                                 "FROM usuario u, persona p\n" +
                                 "WHERE u.id_medico=p.ci;";
             ModeloMostrarDatos modelo = new ModeloMostrarDatos();
@@ -83,7 +83,7 @@ public class Usuario {
             
             String comando;
             if(rs.next())
-                comando = "UPDATE usuario SET username='"+this.username+"', password=md5('"+this.password+"') WHERE id='"+id+"';";
+                comando = "UPDATE usuario SET username='"+this.username+"', password=md5('"+this.password+"'), privilegio='"+this.privilegio+"' WHERE id='"+id+"';";
             else
                 comando = "INSERT INTO usuario (username, password, privilegio, id_medico) " + 
                             "VALUES ('"+this.username+"', md5('"+this.password+"'), '"+this.privilegio+"','"+this.id_medico+"');";

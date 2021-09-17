@@ -1,9 +1,9 @@
-drop table pago_tratamiento;
-drop table historial;
-drop table tratamiento;
-drop table consulta;
-drop table historial_clinico;
-drop table usuario;
-drop table medico;
-drop table paciente;
-drop table persona cascade;
+drop table if exists pago_tratamiento;
+drop table if exists historial;
+drop table if exists tratamiento;
+drop table if exists consulta;
+drop table if exists historial_clinico;
+drop table if exists usuario;
+drop table if exists medico;
+drop table if exists paciente;
+drop table if exists persona cascade;

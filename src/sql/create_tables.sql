@@ -1,6 +1,6 @@
 /* create database db_clinica_general*/
 create table persona(
-	ci varchar(12) primary key,
+    ci varchar(12) primary key,
     nombre varchar(50) not null,
     celular varchar(10) not null,
     email varchar(50),
@@ -30,7 +30,7 @@ create table usuario(
 	username varchar(20) not null unique,
 	password varchar(50) not null,
 	creado_en timestamp  default current_timestamp,
-        privilegio char(1) not null,
+         privilegio char(1) not null,
 	id_medico varchar(12) not null,
 	foreign key (id_medico) references medico (ci)
 	on update cascade on delete cascade
@@ -106,3 +106,17 @@ create table pago_tratamiento(
 	id_tratamiento int not null, foreign key (id_tratamiento) references tratamiento (id)
 	on update cascade on delete cascade
 );--alter table pago_tratamiento add column saldo_restante float(2) default 0.0; --lo agregué después no más
+
+
+
+
+
+/*==================INSERTAR PRIMER MEDICO Y SU CUENTA DE USUARIO=============*/
+INSERT INTO persona (ci, nombre, celular, email, fecha_nac, genero, direccion, ocupacion) 
+    VALUES ('12341234', 'ADMINISTRADOR', '234244', 'admin@gmail.com', '27/7/2000', 'M', 'DIRECCIÓN #1', 'MEDICO PRINCIPAL');
+
+INSERT INTO medico (ci, experiencia, trabajos_ant) 
+    VALUES ('12341234', 'NINGUNO', 'NINGUNO');
+
+INSERT INTO usuario (username, password, privilegio, id_medico) 
+    VALUES ('admin', md5('admin'), 'A', '12341234');

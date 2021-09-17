@@ -42,9 +42,7 @@ Existen 4 librerias en el proyecto:
 
 ### Bases de datos PostgreSQL
 1. Crear una base de datos nueva, ejm: `CREATE DATABASE db_clinica_general;`
-2. Abrir un Editor de Consultas en esa base de datos. (QueryEditor)
-3. Desde allí abrir el archivo para ejecutar todo en un solo click. Está en el dentro del proyecto en el package o carpeta sql con el nombre **01_execute_migration.sql**
-4. Una vez abierto, ejecutar en el icono de Run/Ejecutar. Eso va a crear las tablas, un trigger que es necesario y crear un usuario admin.
+2. Buscar y ejecutar el archivo **EjecutarMigracion.sql** que está en el package sql.
 
 ### Usuario Default
 Después de crear la base de datos y ejecutar el scrip 01_execute_migration.sql ya puede probar el sistema clinico general.
