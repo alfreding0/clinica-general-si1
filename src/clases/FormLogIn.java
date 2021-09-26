@@ -43,12 +43,13 @@ public class FormLogIn extends javax.swing.JFrame {
             String [] usuarioLogueado = usuario.validarIngresoAlSistema(jTextFieldUsername.getText(), jPasswordField.getText());
             
             if(usuarioLogueado != null){
+                this.dispose();
                 
                 FormPrincipal form = new FormPrincipal();
                 FormPrincipal.jLabelIdMedico.setText(usuarioLogueado[0]);
                 FormPrincipal.jLabelNombreMedico.setText(usuarioLogueado[1]);
                 
-                form.mostrarBotonesSegunTipoUsuario( usuarioLogueado[2].equals("S") ); //si es secretaria.
+                form.mostrarBotonesSegunTipoUsuario( usuarioLogueado[2].equals("N") ); //si es un usuario normal (secretaria, medico).
                 form.setVisible(true);
             }else
                 JOptionPane.showMessageDialog(null, "Estos credenciales no existen!\nRevise bien y vuelva a intentarlo.", "Información", JOptionPane.WARNING_MESSAGE);

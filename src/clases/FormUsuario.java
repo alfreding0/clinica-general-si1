@@ -443,14 +443,14 @@ public class FormUsuario extends javax.swing.JFrame {
 
     private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
         if( jTable1.getSelectedRowCount()>0 ){
-            String ci = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
+            String id = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
             Usuario medi = new Usuario();
-            medi.buscarParaEdicion(ci);
+            medi.buscarParaEdicion(id);
             
             jTextFielID.setText( medi.getId() );
             jTextFieldIdMedico.setText(medi.getId_medico());
             jTextFieldUsername.setText(medi.getUsername());
-            jTextFieldNombreMedico.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+            new Medico().buscarMedicoPorCI(jTextFieldNombreMedico, medi.getId_medico());
             if(medi.getPrivilegio().equals("A")) jComboBoxPrivilegio.setSelectedIndex(1); else jComboBoxPrivilegio.setSelectedIndex(2);
         }
     }//GEN-LAST:event_jTable1MouseReleased

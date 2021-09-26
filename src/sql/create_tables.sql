@@ -30,7 +30,7 @@ create table usuario(
 	username varchar(20) not null unique,
 	password varchar(50) not null,
 	creado_en timestamp  default current_timestamp,
-         privilegio char(1) not null,
+         privilegio char(1) not null, --tipo de usuarios: A=Administrador;  N=Normal (Secretaria, Medico)
 	id_medico varchar(12) not null,
 	foreign key (id_medico) references medico (ci)
 	on update cascade on delete cascade
